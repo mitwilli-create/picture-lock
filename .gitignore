@@ -1,0 +1,18 @@
+# secrets
+.env
+
+# deps
+node_modules/
+
+# generated media + cache (regenerate via `npm run mock` or a live run)
+.cache/
+output/*.mp4
+output/*.mp3
+output/*.aiff
+output/*.srt
+
+# keep the manifest schema visible as case-study evidence, but not personal runs
+output/run-manifest.json
+
+# os
+.DS_Store

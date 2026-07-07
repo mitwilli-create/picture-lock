@@ -1,0 +1,24 @@
+{
+  "name": "broll-pipeline",
+  "version": "0.1.0",
+  "description": "ElevenLabs-native pipeline that turns a voiceover script into a produced short: AI narration, generated b-roll, score, sound design, and an optional dub, assembled with a full cost-logged call manifest. A forward-deployed reference workflow.",
+  "type": "module",
+  "bin": {
+    "broll-pipeline": "./pipeline.mjs"
+  },
+  "scripts": {
+    "start": "node pipeline.mjs --script input/script.md",
+    "mock": "node pipeline.mjs --script input/script.md --mock",
+    "dry": "node pipeline.mjs --script input/script.md --dry-run",
+    "voices": "node -e \"import('./lib/elevenlabs.mjs').then(m=>m.listVoices()).then(v=>console.log(v.voices.map(x=>x.name+' '+x.voice_id).join('\\n')))\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "license": "MIT",
+  "author": "Mitchell Williams",
+  "keywords": ["elevenlabs", "text-to-speech", "video", "ffmpeg", "forward-deployed", "creative-automation"]
+}
