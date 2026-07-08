@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// pipeline.mjs — ElevenLabs-native b-roll pipeline orchestrator.
+// pipeline.mjs: ElevenLabs-native b-roll pipeline orchestrator.
 // Resumable (content-hash cache), cost-logged (output/run-manifest.json).
 //
 //   node pipeline.mjs --script input/script.md            # full run
@@ -39,7 +39,7 @@ function record(stage, meta, costUsd = 0) {
 }
 
 // ── [1] parseScript ──────────────────────────────────────────────────────────
-// input/script.md format — one beat per block:
+// input/script.md format: one beat per block:
 //   ## beat
 //   VO: <narration line>
 //   VISUAL: <b-roll prompt>
@@ -50,8 +50,9 @@ function parseScript(path) {
   for (const block of raw.split(/^##\s+/m).slice(1)) {
     const vo = (block.match(/VO:\s*(.+)/i) || [])[1]?.trim() || '';
     const visual = (block.match(/VISUAL:\s*(.+)/i) || [])[1]?.trim() || '';
+    const sfx = (block.match(/SFX:\s*(.+)/i) || [])[1]?.trim() || '';
     const seconds = parseFloat((block.match(/SECONDS:\s*([\d.]+)/i) || [])[1] || '5');
-    if (vo || visual) beats.push({ vo, visualPrompt: visual, seconds });
+    if (vo || visual) beats.push({ vo, visualPrompt: visual, sfxPrompt: sfx, seconds });
   }
   return beats;
 }
@@ -68,7 +69,7 @@ mkdirSync(VO_DIR, { recursive: true });
 // beats carry their generated assets forward to assemble (voPath).
 async function stageVoiceover(beats) {
   console.log(`▶ [2] voiceover${MOCK ? ' (MOCK: macOS say, $0)' : ''}`);
-  if (DRY) { await el.listVoices().then(v => console.log(`  auth OK — ${v.voices?.length ?? '?'} voices available`)); return; }
+  if (DRY) { await el.listVoices().then(v => console.log(`  auth OK: ${v.voices?.length ?? '?'} voices available`)); return; }
   for (const [i, b] of beats.entries()) {
     if (!b.vo) { b.voPath = null; continue; }
     if (MOCK) {
@@ -76,7 +77,7 @@ async function stageVoiceover(beats) {
       record('voiceover', { beat: i, chars: b.vo.length, mock: true }, 0);
     } else {
       const voiceId = process.env.XI_VOICE_ID;
-      if (!voiceId) throw new Error('XI_VOICE_ID not set — add a default voice id to .env (see .env.example).');
+      if (!voiceId) throw new Error('XI_VOICE_ID not set: add a default voice id to .env (see .env.example).');
       const buf = await el.tts({ text: b.vo, voiceId });
       b.voPath = join(VO_DIR, `beat-${i}.mp3`);
       _wf(b.voPath, buf);
@@ -91,12 +92,38 @@ async function stageVisuals(beats) {
   record('visuals', { beats: beats.length, mock: MOCK, note: MOCK ? 'prompt-card in assemble' : 'Studio-in-the-loop; see docs/visual-shim.md' });
 }
 async function stageScore(beats) {
-  console.log('▶ [4] score (Eleven Music)');
-  record('score', { note: MOCK ? 'skipped in mock' : 'el.music(text) OR el.videoToMusic(rough-cut)' });
+  console.log(`▶ [4] score (Eleven Music v2)${MOCK ? ' (MOCK: skipped)' : ''}`);
+  if (DRY || MOCK) { record('score', { note: 'skipped (dry/mock)' }); return; }
+  const totalS = beats.reduce((a, b) => a + (b.seconds || 5), 0) + 2;
+  const prompt = arg('--music-prompt',
+    'minimal cinematic electronic underscore, dark and restrained, slow pulse, no melody hook, instrumental bed under narration');
+  const out = join(CACHE, 'music.mp3');
+  if (!existsSync(out)) {
+    const buf = await el.music({ prompt, lengthMs: totalS * 1000 });
+    _wf(out, buf);
+  }
+  manifest.musicPath = out;
+  record('score', { seconds: totalS, model: 'music_v2', out: '.cache/music.mp3' }, (totalS / 60) * 0.15);
 }
 async function stageSfx(beats) {
-  console.log('▶ [5] sfx');
-  record('sfx', { note: MOCK ? 'skipped in mock' : 'el.soundEffect per accent beat (optional)' });
+  console.log(`▶ [5] sfx${MOCK ? ' (MOCK: skipped)' : ''}`);
+  if (DRY || MOCK) { record('sfx', { note: 'skipped (dry/mock)' }); return; }
+  const SFX_DIR = join(CACHE, 'sfx');
+  mkdirSync(SFX_DIR, { recursive: true });
+  manifest.sfx = [];
+  let offset = 0, made = 0;
+  for (const [i, b] of beats.entries()) {
+    if (b.sfxPrompt) {
+      const dur = Math.min(4, Math.max(1, (b.seconds || 5) * 0.6));
+      const out = join(SFX_DIR, `beat-${i}.mp3`);
+      if (!existsSync(out)) _wf(out, await el.soundEffect({ text: b.sfxPrompt, durationSeconds: dur }));
+      manifest.sfx.push({ path: out, atSec: offset });
+      record('sfx', { beat: i, prompt: b.sfxPrompt.slice(0, 60), duration_s: dur }, (dur / 60) * 0.12);
+      made++;
+    }
+    offset += b.seconds || 5;
+  }
+  if (!made) record('sfx', { note: 'no SFX: lines in script' });
 }
 async function stageAssemble(beats) {
   console.log('▶ [6] assemble (ffmpeg)');
@@ -110,14 +137,39 @@ async function stageAssemble(beats) {
   fx.buildSrt(beats, durations, srtPath);
   const finalPath = join(OUT, 'short.mp4');
   fx.assembleBeats(clips, srtPath, finalPath, BEAT_DIR);
+  const sfxEntries = manifest.sfx ?? [];
+  if (!MOCK && (manifest.musicPath || sfxEntries.length)) {
+    const mixed = join(BEAT_DIR, 'short-mixed.mp4');
+    fx.mixStems(finalPath, manifest.musicPath ?? null, sfxEntries, mixed);
+    _cp(mixed, finalPath);
+    record('mix', { music: !!manifest.musicPath, sfx: sfxEntries.length, note: 'stems mixed under VO' });
+  }
   const dur = fx.probeDuration(finalPath);
   record('assemble', { beats: clips.length, out: 'output/short.mp4', captions: 'output/short.srt (soft)', duration_s: +dur.toFixed(2) });
   // also drop a standalone SRT next to the video for NLE import
   try { _cp(srtPath, join(OUT, 'short.srt')); } catch {}
 }
 async function stageDub(lang) {
-  console.log(`▶ [7] dub → ${lang}`);
-  record('dub', { lang, note: 'el.dub(final, lang) → output/short.<lang>.mp4' });
+  console.log(`▶ [7] dub → ${lang}${MOCK ? ' (MOCK: skipped)' : ''}`);
+  if (DRY || MOCK) { record('dub', { lang, note: 'skipped (dry/mock)' }); return; }
+  const finalPath = join(OUT, 'short.mp4');
+  const { dubbing_id, expected_duration_sec } = await el.dubCreate({ filePath: finalPath, targetLang: lang });
+  console.log(`  dubbing job ${dubbing_id}, expected ~${expected_duration_sec}s`);
+  const deadline = Date.now() + 15 * 60 * 1000;
+  let status = '';
+  while (Date.now() < deadline) {
+    await new Promise((r) => setTimeout(r, 10_000));
+    const j = await el.dubStatus(dubbing_id);
+    status = j.status;
+    if (status === 'dubbed') break;
+    if (status === 'failed') throw new Error('dub job failed: ' + JSON.stringify(j).slice(0, 300));
+  }
+  if (status !== 'dubbed') throw new Error('dub polling timed out after 15 min');
+  const buf = await el.dubDownload(dubbing_id, lang);
+  const out = join(OUT, `short.${lang}.mp4`);
+  _wf(out, buf);
+  const mins = fx.probeDuration(finalPath) / 60;
+  record('dub', { lang, dubbing_id, out: `output/short.${lang}.mp4` }, mins * 0.50);
 }
 
 // ── run ───────────────────────────────────────────────────────────────────────
@@ -125,7 +177,7 @@ const beats = existsSync(join(ROOT, SCRIPT)) ? parseScript(SCRIPT) : [];
 const mode = DRY ? 'DRY RUN' : MOCK ? 'MOCK ($0)' : 'LIVE';
 manifest.started = new Date().toISOString();
 manifest.mode = mode;
-console.log(`broll-pipeline — ${beats.length} beats — ${mode}\n`);
+console.log(`broll-pipeline: ${beats.length} beats: ${mode}\n`);
 
 const stages = {
   voiceover: () => stageVoiceover(beats),

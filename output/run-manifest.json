@@ -1,0 +1,157 @@
+{
+  "started": "2026-07-08T03:28:02.238Z",
+  "script": "input/script.md",
+  "dry": false,
+  "calls": [
+    {
+      "stage": "voiceover",
+      "beat": 0,
+      "chars": 95,
+      "costUsd": 0.009500000000000001
+    },
+    {
+      "stage": "voiceover",
+      "beat": 1,
+      "chars": 111,
+      "costUsd": 0.0111
+    },
+    {
+      "stage": "voiceover",
+      "beat": 2,
+      "chars": 93,
+      "costUsd": 0.009300000000000001
+    },
+    {
+      "stage": "voiceover",
+      "beat": 3,
+      "chars": 86,
+      "costUsd": 0.0086
+    },
+    {
+      "stage": "voiceover",
+      "beat": 4,
+      "chars": 87,
+      "costUsd": 0.0087
+    },
+    {
+      "stage": "voiceover",
+      "beat": 5,
+      "chars": 92,
+      "costUsd": 0.0092
+    },
+    {
+      "stage": "voiceover",
+      "beat": 6,
+      "chars": 91,
+      "costUsd": 0.0091
+    },
+    {
+      "stage": "voiceover",
+      "beat": 7,
+      "chars": 103,
+      "costUsd": 0.0103
+    },
+    {
+      "stage": "voiceover",
+      "beat": 8,
+      "chars": 67,
+      "costUsd": 0.006700000000000001
+    },
+    {
+      "stage": "visuals",
+      "beats": 9,
+      "mock": false,
+      "note": "Studio-in-the-loop; see docs/visual-shim.md",
+      "costUsd": 0
+    },
+    {
+      "stage": "score",
+      "seconds": 62,
+      "model": "music_v2",
+      "out": ".cache/music.mp3",
+      "costUsd": 0.155
+    },
+    {
+      "stage": "sfx",
+      "beat": 0,
+      "prompt": "low room tone with a single soft keyboard click",
+      "duration_s": 4,
+      "costUsd": 0.008
+    },
+    {
+      "stage": "sfx",
+      "beat": 2,
+      "prompt": "a clean digital whoosh, subtle",
+      "duration_s": 3.5999999999999996,
+      "costUsd": 0.007199999999999999
+    },
+    {
+      "stage": "sfx",
+      "beat": 4,
+      "prompt": "a soft rising synth swell",
+      "duration_s": 4,
+      "costUsd": 0.008
+    },
+    {
+      "stage": "sfx",
+      "beat": 6,
+      "prompt": "a short mechanical printer sound",
+      "duration_s": 4,
+      "costUsd": 0.008
+    },
+    {
+      "stage": "sfx",
+      "beat": 8,
+      "prompt": "a single deep soft impact hit",
+      "duration_s": 3.5999999999999996,
+      "costUsd": 0.007199999999999999
+    },
+    {
+      "stage": "mix",
+      "music": true,
+      "sfx": 5,
+      "note": "stems mixed under VO",
+      "costUsd": 0
+    },
+    {
+      "stage": "assemble",
+      "beats": 9,
+      "out": "output/short.mp4",
+      "captions": "output/short.srt (soft)",
+      "duration_s": 50.41,
+      "costUsd": 0
+    },
+    {
+      "stage": "dub",
+      "lang": "es",
+      "dubbing_id": "dzc6VNLa9wuUDBkOOoTx",
+      "out": "output/short.es.mp4",
+      "costUsd": 0.42006670833333337
+    }
+  ],
+  "costUsd": 0.6959667083333334,
+  "mode": "LIVE",
+  "musicPath": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/music.mp3",
+  "sfx": [
+    {
+      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-0.mp3",
+      "atSec": 0
+    },
+    {
+      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-2.mp3",
+      "atSec": 14
+    },
+    {
+      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-4.mp3",
+      "atSec": 26
+    },
+    {
+      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-6.mp3",
+      "atSec": 40
+    },
+    {
+      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-8.mp3",
+      "atSec": 54
+    }
+  ]
+}

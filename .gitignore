@@ -11,8 +11,11 @@ output/*.mp3
 output/*.aiff
 output/*.srt
 
-# keep the manifest schema visible as case-study evidence, but not personal runs
-output/run-manifest.json
+# the run manifest IS the case-study evidence: committed deliberately
 
 # os
 .DS_Store
+
+# personal working scripts, never public
+input/voice-clone-script.md
+input/field-teams-script.md
