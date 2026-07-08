@@ -4,7 +4,7 @@ An ElevenLabs-native pipeline that turns a voiceover script into a produced shor
 
 Built as a forward-deployed reference workflow: the kind of reusable, adoption-ready production system an embedded creative would hand a customer so the value sticks after they leave the room.
 
-> Status: v0.1 (2026-07-07). Runs end-to-end today. `npm run mock` produces a real captioned `output/short.mp4` with zero API spend (macOS `say` for narration, ffmpeg for assembly, soft-subtitle track). The live audio stages (ElevenLabs TTS / Music / SFX / Dubbing) are wired and activate when `XI_API_KEY` is set; the visual stage runs through ElevenCreative Studio with a scripted capture shim. See `Week plan` below.
+> Status: v0.2 (2026-07-07). The full audio stack has run live end-to-end: TTS narration, an Eleven Music v2 score, per-beat sound effects, stem mixing, and a Spanish dub, producing a 50.4s captioned cut for $0.696 total. Every call is logged in [output/run-manifest.json](output/run-manifest.json), committed as the case-study receipt. `npm run mock` still runs the whole workflow with zero spend. The visual stage runs through ElevenCreative Studio with a scripted capture shim (no public REST endpoint for image/video as of this build).
 
 ## Quick start
 
