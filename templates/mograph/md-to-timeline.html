@@ -1,0 +1,73 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#0c1016;overflow:hidden}</style>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Beat 1: the real script.md types itself, then its beat blocks snap into a
+// 10-segment timeline. renderFrame(f, total) is pure: state = f(frame).
+const cv = document.getElementById('c'), x = cv.getContext('2d');
+const BG='#0c1016', PANEL='#11161d', TEXT='#e8e6df', DIM='#7d8590', ACC='#ffb454', EDGE='#1c2430';
+const MONO = '500 26px "SF Mono", Menlo, Consolas, monospace';
+const ease = t => t<=0?0:t>=1?1:t*t*(3-2*t);
+let D = { scriptText: '', beatCount: 10 };
+window.setData = d => { D = Object.assign(D, d); D.lines = (D.scriptText||'').split('\n').slice(0, 46); };
+
+function drawEditor(chars, alpha) {
+  x.globalAlpha = alpha;
+  // window chrome
+  const px=60, py=180, pw=960, ph=1280;
+  x.fillStyle=PANEL; x.strokeStyle=EDGE; x.lineWidth=2;
+  x.beginPath(); x.roundRect(px,py,pw,ph,18); x.fill(); x.stroke();
+  x.fillStyle=DIM; x.font='500 24px "SF Mono", Menlo, monospace';
+  x.fillText('input/script.md', px+96, py+52);
+  ['#ff5f57','#febc2e','#28c840'].forEach((c,i)=>{x.fillStyle=c;x.beginPath();x.arc(px+34+i*30,py+44,8,0,7);x.fill();});
+  // typed lines
+  x.save(); x.beginPath(); x.rect(px+8, py+80, pw-16, ph-100); x.clip();
+  x.font=MONO;
+  let used=0, y=py+120;
+  for (const ln of (D.lines||[])) {
+    if (used >= chars) break;
+    const take = Math.min(ln.length, chars-used); used += take+1;
+    const s = ln.slice(0, take);
+    if (ln.startsWith('## ')) { x.fillStyle=ACC; }
+    else if (/^(VO|VISUAL|VISUAL-MODE|MOGRAPH|SFX|SECONDS|CAPTION):/.test(ln)) { x.fillStyle=TEXT; }
+    else x.fillStyle=DIM;
+    x.fillText(s.length>62? s.slice(0,62)+'…' : s, px+40, y);
+    y+=27; if (y>py+ph-30) break;
+  }
+  // cursor
+  if (chars>0 && y<py+ph-30) { x.fillStyle=ACC; x.fillRect(px+40, y-20, 14, 26); }
+  x.restore(); x.globalAlpha=1;
+}
+
+function drawTimeline(p) { // p: 0..1 snap-in progress
+  const n = D.beatCount||10, tw=920, th=110, tx=(1080-tw)/2, ty=1560;
+  x.globalAlpha = ease(p);
+  x.fillStyle=DIM; x.font='500 24px "SF Mono", Menlo, monospace';
+  x.fillText('timeline · '+n+' beats', tx, ty-24);
+  for (let i=0;i<n;i++){
+    const seg = ease(Math.min(1, Math.max(0, p*n - i)));   // segments land in order
+    if (seg<=0) continue;
+    const w = (tw/n)-8, sx = tx + i*(tw/n);
+    const drop = (1-seg)*-140;
+    x.globalAlpha = ease(p)*seg;
+    x.fillStyle = i%2? '#233043' : '#2c3a50';
+    x.beginPath(); x.roundRect(sx, ty+drop, w, th, 10); x.fill();
+    x.fillStyle=TEXT; x.font='500 26px "SF Mono", Menlo, monospace';
+    x.fillText(String(i+1), sx+w/2-8, ty+drop+th/2+9);
+  }
+  // playhead
+  if (p>0.85){ x.globalAlpha=ease((p-0.85)/0.15); x.fillStyle=ACC; x.fillRect(tx-2, ty-12, 4, th+24); }
+  x.globalAlpha=1;
+}
+
+window.renderFrame = (f, total) => {
+  x.fillStyle=BG; x.fillRect(0,0,1080,1920);
+  const t = f/(total-1);
+  const totalChars = (D.lines||[]).reduce((a,l)=>a+l.length+1, 0);
+  const typeT = ease(Math.min(1, t/0.62));
+  drawEditor(Math.floor(typeT*totalChars), 1);
+  const snapT = Math.max(0, (t-0.55)/0.45);
+  if (snapT>0) drawTimeline(Math.min(1, snapT));
+};
+</script>

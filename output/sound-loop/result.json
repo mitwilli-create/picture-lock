@@ -1,0 +1,36 @@
+{
+  "winner": 2,
+  "review": {
+    "scores": {
+      "hierarchy": 6,
+      "music": 5,
+      "nat": 4,
+      "sync": 4,
+      "transitions": 5,
+      "artifacts": 5,
+      "polish": 4
+    },
+    "overall": 5,
+    "ship": false,
+    "fixes": [
+      {
+        "t": 11,
+        "instruction": "Reduce camera SFX gain."
+      },
+      {
+        "t": 14,
+        "instruction": "Replace generic slicing Foley."
+      },
+      {
+        "t": 21,
+        "instruction": "Remove splash SFX for airborne fish."
+      },
+      {
+        "t": 26,
+        "instruction": "Tighten sync on scale impact."
+      }
+    ]
+  },
+  "estExtraSpendUsd": 0.015,
+  "finished": "stamped-by-caller"
+}

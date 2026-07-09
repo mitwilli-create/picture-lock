@@ -1,0 +1,31 @@
+{
+  "scores": {
+    "hierarchy": 6,
+    "music": 5,
+    "nat": 3,
+    "sync": 6,
+    "transitions": 5,
+    "artifacts": 4,
+    "polish": 5
+  },
+  "overall": 4,
+  "ship": false,
+  "fixes": [
+    {
+      "t": 9,
+      "instruction": "Replace generic water splash with dull, icy thuds for fish hitting the ice."
+    },
+    {
+      "t": 20,
+      "instruction": "Reduce level of the overly prominent grunt, or swap for subtle exertion."
+    },
+    {
+      "t": 22,
+      "instruction": "Tame the cartoonish whoosh and splash effects to blend better with the track."
+    },
+    {
+      "t": 27,
+      "instruction": "Remove the awkward 'whoo' vocalization; let the slap ring out instead."
+    }
+  ]
+}

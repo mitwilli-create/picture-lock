@@ -1,0 +1,58 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#0c1016;overflow:hidden}</style>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Beat 9: the real dub command runs; language chips cascade in and the ES chip
+// lands on the timeline. Localization shown, not claimed.
+const cv=document.getElementById('c'), x=cv.getContext('2d');
+const BG='#0c1016', PANEL='#11161d', TEXT='#e8e6df', DIM='#7d8590', ACC='#ffb454', GREEN='#7ee787', EDGE='#1c2430';
+const ease=t=>t<=0?0:t>=1?1:t*t*(3-2*t);
+let D={command:'node pipeline.mjs --dub es', langs:['ES','FR','DE','PT','JA','HI','KO','IT']};
+window.setData=d=>{D=Object.assign(D,d);};
+
+window.renderFrame=(f,total)=>{
+  x.fillStyle=BG; x.fillRect(0,0,1080,1920);
+  const t=f/(total-1);
+  // terminal
+  const px=50, py=300, pw=980, ph=300;
+  x.fillStyle=PANEL; x.strokeStyle=EDGE; x.lineWidth=2;
+  x.beginPath(); x.roundRect(px,py,pw,ph,18); x.fill(); x.stroke();
+  ['#ff5f57','#febc2e','#28c840'].forEach((c,i)=>{x.fillStyle=c;x.beginPath();x.arc(px+34+i*30,py+44,8,0,7);x.fill();});
+  const cmd='$ '+D.command;
+  x.font='500 28px "SF Mono", Menlo, monospace';
+  const chars=Math.floor(ease(Math.min(1,t/0.22))*cmd.length);
+  x.fillStyle=TEXT; x.fillText(cmd.slice(0,chars), px+40, py+120);
+  const okT=ease(Math.max(0,(t-0.78)/0.12));
+  if(okT>0){ x.globalAlpha=okT; x.fillStyle=GREEN; x.fillText('✓ output/short.es.mp4', px+40, py+200); x.globalAlpha=1; }
+
+  // chips cascade: each falls to a shelf row; ES falls last, biggest, onto the timeline
+  const shelfY=1000, langs=D.langs||[];
+  langs.forEach((L,i)=>{
+    if(L==='ES') return;
+    const start=0.22+i*0.05, lt=Math.max(0,Math.min(1,(t-start)/0.25));
+    if(lt<=0) return;
+    const col=i%4, rowi=Math.floor(i/4);
+    const cx=170+col*210, cy=-80+ease(lt)*(shelfY+rowi*110+80);
+    x.globalAlpha=0.35+0.35*lt;
+    x.fillStyle='#1d2836'; x.beginPath(); x.roundRect(cx-70,cy-40,140,80,16); x.fill();
+    x.fillStyle=DIM; x.font='600 34px "SF Mono", Menlo, monospace';
+    x.fillText(L, cx-22, cy+12); x.globalAlpha=1;
+  });
+
+  // timeline bar + ES chip landing
+  const tw=920, th=100, tx=80, ty=1560;
+  x.fillStyle='#233043'; x.beginPath(); x.roundRect(tx,ty,tw,th,12); x.fill();
+  x.fillStyle=DIM; x.font='500 24px "SF Mono", Menlo, monospace';
+  x.fillText('short.mp4 → short.es.mp4', tx, ty-20);
+  const esT=Math.max(0,Math.min(1,(t-0.5)/0.3));
+  if(esT>0){
+    const cy=-100+ease(esT)*(ty+th/2+100);
+    const squash = esT>0.96 ? 1.12 : 1;
+    x.save(); x.translate(540, Math.min(cy, ty+th/2)); x.scale(squash, 2-squash);
+    x.fillStyle=ACC; x.beginPath(); x.roundRect(-110,-58,220,116,20); x.fill();
+    x.fillStyle='#0c1016'; x.font='700 52px "SF Mono", Menlo, monospace';
+    x.fillText('ES', -32, 18); x.restore();
+  }
+};
+</script>

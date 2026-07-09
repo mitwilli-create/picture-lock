@@ -1,0 +1,63 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#0c1016;overflow:hidden}</style>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Beat 7: the REAL run manifest printing as a thermal receipt. A receipt, not
+// a guess: real stages, real models, real numbers, costSource labeled.
+const cv=document.getElementById('c'), x=cv.getContext('2d');
+const BG='#0c1016', PAPER='#f3efe6', INK='#22201c', FAINT='#6b675e', ACC='#b3510f';
+const ease=t=>t<=0?0:t>=1?1:t*t*(3-2*t);
+let D={lines:[],total:'0.00',costSource:'estimate + live rates'};
+window.setData=d=>{D=Object.assign(D,d);};
+
+function row(y, l, r, style){
+  x.font = style==='b' ? '700 30px "SF Mono", Menlo, monospace' : '500 28px "SF Mono", Menlo, monospace';
+  x.fillStyle = style==='f' ? FAINT : style==='a' ? ACC : INK;
+  x.fillText(l, 160, y);
+  if(r!==undefined){ const w=x.measureText(r).width; x.fillText(r, 920-w, y); }
+}
+
+window.renderFrame=(f,total)=>{
+  x.fillStyle=BG; x.fillRect(0,0,1080,1920);
+  const t=f/(total-1);
+  const lines=D.lines||[];
+  const bodyH = 460 + lines.length*44 + 300;
+  // paper rises header-first out of a printer slot at the bottom of frame,
+  // with tiny mechanical jitter while feeding
+  const SLOT_Y = 1660;
+  const printed = ease(Math.min(1, t/0.82));
+  const jitter = t<0.82 ? Math.sin(f*2.7)*1.6 : 0;
+  const paperTop = SLOT_Y - printed*Math.min(bodyH, 1500) + jitter;
+
+  // printer slot
+  x.fillStyle='#1a212b'; x.beginPath(); x.roundRect(80, SLOT_Y-10, 920, 80, 14); x.fill();
+  x.fillStyle='#05070a'; x.fillRect(110, SLOT_Y+8, 860, 18);
+
+  // paper (clipped so it only exists above the slot)
+  x.save(); x.beginPath(); x.rect(110, 100, 860, SLOT_Y-110); x.clip();
+  x.translate(0, paperTop);
+  x.fillStyle=PAPER;
+  x.fillRect(140, 0, 800, bodyH);
+  // perforated bottom edge
+  x.beginPath();
+  for(let px=140; px<940; px+=26){ x.moveTo(px, bodyH); x.lineTo(px+13, bodyH-14); x.lineTo(px+26, bodyH); }
+  x.fill();
+
+  let y=110;
+  x.textAlign='center'; x.font='700 34px "SF Mono", Menlo, monospace'; x.fillStyle=INK;
+  x.fillText('QUICK-CUT PIPELINE', 540, y); y+=44;
+  x.font='500 26px "SF Mono", Menlo, monospace'; x.fillStyle=FAINT;
+  x.fillText('one script · one command · one cut', 540, y); y+=56;
+  x.textAlign='left';
+  row(y, '────────────────────────────', undefined, 'f'); y+=52;
+  for(const ln of lines){ row(y, ln.label, ln.value, ln.style||''); y+=44; }
+  row(y, '────────────────────────────', undefined, 'f'); y+=56;
+  row(y, 'TOTAL', '$'+D.total, 'b'); y+=52;
+  row(y, 'costSource: '+D.costSource, undefined, 'f'); y+=64;
+  // barcode
+  let bx=250; const seed=(D.total||'').split('').reduce((a,c)=>a+c.charCodeAt(0),7);
+  for(let i=0;i<70;i++){ const w=((seed*(i+3))%7)>3?6:3; x.fillStyle=INK; x.fillRect(bx, y, w, 90); bx+=w+((seed*(i+11))%5)+3; }
+  x.restore();
+};
+</script>

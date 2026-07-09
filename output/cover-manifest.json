@@ -1,0 +1,520 @@
+{
+  "started": "2026-07-08T21:24:43.834Z",
+  "script": "input/script.md",
+  "dry": false,
+  "calls": [
+    {
+      "stage": "cover",
+      "piece": "/private/tmp/claude-501/-Users-mitchellwilliams-Documents-broll-pipeline/540c310f-6fe8-46cc-bb8e-f62ad4a43603/scratchpad/sample-piece-el.mp3",
+      "duration_s": 28.79,
+      "hash": "11aaf39ecfed",
+      "costUsd": 0
+    },
+    {
+      "stage": "stt",
+      "cached": true,
+      "words": 175,
+      "costUsd": 0
+    },
+    {
+      "stage": "council",
+      "cached": true,
+      "beats": 14,
+      "originalCostUsd": 3.5742,
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 0,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 3,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 4,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 6,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 7,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 9,
+      "mode": "gen",
+      "medium": "animated",
+      "cached": true,
+      "originalCostUsd": 0.48,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 11,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 12,
+      "mode": "gen",
+      "medium": "animated",
+      "cached": true,
+      "originalCostUsd": 0.48,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 10,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f439e-7011-7970-b002-016ea17d8590",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 1,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f439e-7011-7d82-8c1c-f89f0ad31445",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 13,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f439e-7010-7680-9f24-e039a209f546",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 8,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f439e-7012-7303-8cdd-8277f685cbe4",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 2,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f439e-7012-7303-8cdd-8269dcafe5b1",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 5,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f439e-7011-7fe1-bec5-06cd41f94a74",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 0,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 1,
+      "verdict": "reroll",
+      "take": 0,
+      "reasons": "Motion is present (clean lateral dolly right, window and perspective shift across frames) and the mood is on-s",
+      "costUsd": 0.0704
+    },
+    {
+      "stage": "visuals",
+      "beat": 1,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 1,
+      "requestId": "019f43a0-b03b-7ab3-b259-cb381552f217",
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 1,
+      "verdict": "reroll",
+      "take": 1,
+      "reasons": "Hard fail: a hanging sign in the upper-right carries garbled gibberish text ('8UD3', 'PIESSO') across all five",
+      "costUsd": 0.0577
+    },
+    {
+      "stage": "visuals",
+      "beat": 1,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 2,
+      "requestId": "019f43a2-8c62-74c3-b316-98d3843d9404",
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 1,
+      "verdict": "accept",
+      "take": 2,
+      "reasons": "On-system: pre-dawn steel-blue exterior warming to sodium-amber practical light spilling from the single open ",
+      "costUsd": 0.0477
+    },
+    {
+      "stage": "review",
+      "beat": 2,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "VO 'already three hours into their day' aligns with a fishmonger already deep in labor over the crushed-ice cr",
+      "costUsd": 0.0437
+    },
+    {
+      "stage": "review",
+      "beat": 3,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 4,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 5,
+      "verdict": "reroll",
+      "take": 0,
+      "reasons": "Strong spectator-intercut energy, clear upward tilt and rising-hands motion, on-system warm morning light, goo",
+      "costUsd": 0.058
+    },
+    {
+      "stage": "visuals",
+      "beat": 5,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 1,
+      "requestId": "019f43a4-a511-7c81-8d92-9ec2b260accd",
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 5,
+      "verdict": "accept",
+      "take": 1,
+      "reasons": "Literalism holds: the VO names 'their cameras' and the frame is dominated by a crowd of hands raising phones a",
+      "costUsd": 0.044
+    },
+    {
+      "stage": "review",
+      "beat": 6,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 7,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 8,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Strong, clearly visible motion across all five frames: hands press and fold the brown butcher-paper package, t",
+      "costUsd": 0.0757
+    },
+    {
+      "stage": "review",
+      "beat": 9,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 10,
+      "verdict": "reroll",
+      "take": 0,
+      "reasons": "The action and literalism are excellent — a fishmonger in an orange Grundens bib genuinely hurling a whole sil",
+      "costUsd": 0.0708
+    },
+    {
+      "stage": "visuals",
+      "beat": 10,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 1,
+      "requestId": "019f43a7-2297-7400-a3ea-7248c7fd31df",
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 10,
+      "verdict": "reroll",
+      "take": 1,
+      "reasons": "Two text violations. (1) The Grundens bib logo is front-and-center, in focus, and renders as garbled 'Gurugens",
+      "costUsd": 0.0601
+    },
+    {
+      "stage": "visuals",
+      "beat": 10,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 2,
+      "requestId": "019f43a9-09f7-7f32-8eb4-fc42ce53f794",
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 10,
+      "verdict": "reroll",
+      "take": 2,
+      "reasons": "HARD FAIL on the text-bearing-prop rule: despite the prompt explicitly demanding a plain bib with NO lettering",
+      "costUsd": 0.0696
+    },
+    {
+      "stage": "review",
+      "beat": 11,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 12,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 13,
+      "verdict": "reroll",
+      "take": 0,
+      "reasons": "Multiple hard failures. (1) TEXT-BEARING PROP: the man's chest patch renders as garbled gibberish ('DGNEERS AT",
+      "costUsd": 0.055
+    },
+    {
+      "stage": "visuals",
+      "beat": 13,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 1,
+      "requestId": "019f43ab-750e-79d3-ae1e-83568507a48e",
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 13,
+      "verdict": "reroll",
+      "take": 1,
+      "reasons": "Hard fail on text-bearing prop: the orange bib carries a clearly rendered 'Grumgens' patch — a garbled version",
+      "costUsd": 0.0635
+    },
+    {
+      "stage": "visuals",
+      "beat": 13,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 2,
+      "requestId": "019f43ad-4332-7543-b927-daa09f88f368",
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 13,
+      "verdict": "reroll",
+      "take": 2,
+      "reasons": "Two hard failures. (1) TEXT-BEARING PROP / ARTIFACT: frames 3-5 clearly show a garbled embossed emblem/logo on",
+      "costUsd": 0.066
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 0",
+      "gapDb": 26.9,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 0,
+      "prompt": "Soft low-passed wet slap of fish on ice on the first frame, ",
+      "duration_s": 1.11,
+      "costUsd": 0.00222
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 3",
+      "gapDb": 10.9,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 3,
+      "prompt": "Granular low-passed ice-crush pour on the cut, capped at -18",
+      "duration_s": 1.32,
+      "costUsd": 0.00264
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 4",
+      "gapDb": 39.7,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 4,
+      "prompt": "Single wet fish/crate thud on the cut, low-passed, ducked un",
+      "duration_s": 1,
+      "costUsd": 0.002
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 5",
+      "gapDb": 18.8,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 5,
+      "prompt": "One softened low-passed camera-shutter tick plus a low crowd",
+      "duration_s": 1,
+      "costUsd": 0.002
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 10",
+      "gapDb": 51.9,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 10,
+      "prompt": "Subtle low-passed air whoosh on the toss cut, under voice.",
+      "duration_s": 1.06,
+      "costUsd": 0.00212
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 13",
+      "gapDb": 10.9,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 13,
+      "prompt": "THE payoff accent: a wet, weighty low-passed slap synced to ",
+      "duration_s": 1,
+      "costUsd": 0.002
+    },
+    {
+      "stage": "audio-qa",
+      "file": "ambience bed",
+      "gapDb": 24.1,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "ambience",
+      "prompt": "One continuous unbroken Pike Place Market ambience bed across all 28.8",
+      "duration_s": 28,
+      "costUsd": 0.056
+    },
+    {
+      "stage": "score",
+      "seconds": 31,
+      "model": "music_v2",
+      "out": ".cache/cover/music.mp3",
+      "briefed": true,
+      "costUsd": 0.07698186
+    },
+    {
+      "stage": "mix",
+      "music": true,
+      "ambience": true,
+      "sfx": 6,
+      "note": "three layers under the voice",
+      "costUsd": 0
+    },
+    {
+      "stage": "assemble",
+      "beats": 14,
+      "out": "output/cover.mp4",
+      "captions": "output/cover.srt (word-timed, soft)",
+      "duration_s": 28.58,
+      "costUsd": 0
+    }
+  ],
+  "costUsd": 6.1281618600000005,
+  "mode": "LIVE"
+}

@@ -1,135 +1,483 @@
 {
-  "started": "2026-07-08T03:28:02.238Z",
+  "started": "2026-07-09T02:50:17.107Z",
   "script": "input/script.md",
   "dry": false,
   "calls": [
     {
       "stage": "voiceover",
       "beat": 0,
-      "chars": 95,
-      "costUsd": 0.009500000000000001
+      "chars": 54,
+      "cached": true,
+      "originalCostUsd": 0.0054,
+      "costUsd": 0
     },
     {
       "stage": "voiceover",
       "beat": 1,
-      "chars": 111,
-      "costUsd": 0.0111
+      "chars": 25,
+      "cached": true,
+      "originalCostUsd": 0.0025000000000000005,
+      "costUsd": 0
     },
     {
       "stage": "voiceover",
       "beat": 2,
-      "chars": 93,
-      "costUsd": 0.009300000000000001
+      "chars": 16,
+      "cached": true,
+      "originalCostUsd": 0.0016,
+      "costUsd": 0
     },
     {
       "stage": "voiceover",
       "beat": 3,
-      "chars": 86,
-      "costUsd": 0.0086
+      "chars": 29,
+      "cached": true,
+      "originalCostUsd": 0.0029000000000000002,
+      "costUsd": 0
     },
     {
       "stage": "voiceover",
       "beat": 4,
-      "chars": 87,
-      "costUsd": 0.0087
+      "chars": 36,
+      "cached": true,
+      "originalCostUsd": 0.0036,
+      "costUsd": 0
     },
     {
       "stage": "voiceover",
       "beat": 5,
-      "chars": 92,
-      "costUsd": 0.0092
+      "chars": 46,
+      "cached": true,
+      "originalCostUsd": 0.0046,
+      "costUsd": 0
     },
     {
       "stage": "voiceover",
       "beat": 6,
-      "chars": 91,
-      "costUsd": 0.0091
+      "chars": 26,
+      "cached": true,
+      "originalCostUsd": 0.0026,
+      "costUsd": 0
     },
     {
       "stage": "voiceover",
       "beat": 7,
-      "chars": 103,
-      "costUsd": 0.0103
+      "chars": 44,
+      "cached": true,
+      "originalCostUsd": 0.0044,
+      "costUsd": 0
     },
     {
       "stage": "voiceover",
       "beat": 8,
-      "chars": 67,
-      "costUsd": 0.006700000000000001
+      "chars": 49,
+      "cached": true,
+      "originalCostUsd": 0.004900000000000001,
+      "costUsd": 0
+    },
+    {
+      "stage": "voiceover",
+      "beat": 9,
+      "chars": 36,
+      "cached": true,
+      "originalCostUsd": 0.0036,
+      "costUsd": 0
+    },
+    {
+      "stage": "voiceover",
+      "beat": 10,
+      "chars": 35,
+      "cached": true,
+      "originalCostUsd": 0.0035000000000000005,
+      "costUsd": 0
+    },
+    {
+      "stage": "voiceover",
+      "beat": 11,
+      "chars": 47,
+      "cached": true,
+      "originalCostUsd": 0.0047,
+      "costUsd": 0
+    },
+    {
+      "stage": "voiceover",
+      "beat": 12,
+      "chars": 54,
+      "cached": true,
+      "originalCostUsd": 0.0054,
+      "costUsd": 0
+    },
+    {
+      "stage": "voiceover",
+      "beat": 13,
+      "chars": 50,
+      "cached": true,
+      "originalCostUsd": 0.005000000000000001,
+      "costUsd": 0
+    },
+    {
+      "stage": "voiceover",
+      "beat": 14,
+      "chars": 30,
+      "cached": true,
+      "originalCostUsd": 0.003,
+      "costUsd": 0
+    },
+    {
+      "stage": "voiceover",
+      "beat": 15,
+      "chars": 42,
+      "cached": true,
+      "originalCostUsd": 0.004200000000000001,
+      "costUsd": 0
     },
     {
       "stage": "visuals",
-      "beats": 9,
-      "mock": false,
-      "note": "Studio-in-the-loop; see docs/visual-shim.md",
+      "beat": 0,
+      "mode": "mograph",
+      "template": "md-to-timeline",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 8,
+      "mode": "mograph",
+      "template": "manifest-terminal",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 9,
+      "mode": "mograph",
+      "template": "reroll",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 11,
+      "mode": "mograph",
+      "template": "receipt",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 13,
+      "mode": "mograph",
+      "template": "dub-card",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 15,
+      "mode": "mograph",
+      "template": "endcard",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "council",
+      "cached": true,
+      "shots": 10,
+      "originalCostUsd": 3.5042,
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 1,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 2,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 4,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 5,
+      "mode": "gen",
+      "medium": "animated",
+      "cached": true,
+      "originalCostUsd": 0.48,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 6,
+      "mode": "gen",
+      "medium": "animated",
+      "cached": true,
+      "originalCostUsd": 0.48,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 7,
+      "mode": "gen",
+      "medium": "animated",
+      "cached": true,
+      "originalCostUsd": 0.48,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 10,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 12,
+      "mode": "gen",
+      "medium": "animated",
+      "cached": true,
+      "originalCostUsd": 0.48,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 14,
+      "mode": "gen",
+      "medium": "live",
+      "cached": true,
+      "originalCostUsd": 0.4,
+      "costSource": "cache",
+      "costUsd": 0
+    },
+    {
+      "stage": "visuals",
+      "beat": 3,
+      "mode": "gen",
+      "medium": "animated",
+      "requestId": "019f44c8-e106-7292-8a28-5e0db09731b6",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.48
+    },
+    {
+      "stage": "review",
+      "beat": 1,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 2,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 3,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Literalism is strong: VO 'An edit bay. A captions pass.' is matched by a convincing DaVinci-style NLE timeline",
+      "costUsd": 0.0846
+    },
+    {
+      "stage": "review",
+      "beat": 4,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 5,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 6,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 7,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 10,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 12,
+      "verdict": "accept",
+      "cached": true,
+      "costUsd": 0
+    },
+    {
+      "stage": "review",
+      "beat": 14,
+      "verdict": "accept",
+      "cached": true,
       "costUsd": 0
     },
     {
       "stage": "score",
-      "seconds": 62,
+      "seconds": 56,
       "model": "music_v2",
       "out": ".cache/music.mp3",
-      "costUsd": 0.155
+      "briefed": true,
+      "costUsd": 0.13999999999999999
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 0",
+      "gapDb": 6.4,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 0",
+      "gapDb": 12.2,
+      "verdict": "clean",
+      "costUsd": 0
     },
     {
       "stage": "sfx",
       "beat": 0,
-      "prompt": "low room tone with a single soft keyboard click",
-      "duration_s": 4,
-      "costUsd": 0.008
+      "prompt": "soft mechanical keyboard clicks, rapid typing, close and qui",
+      "duration_s": 2.4,
+      "costUsd": 0.0048
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 9",
+      "gapDb": 0.8,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 9",
+      "gapDb": 4.4,
+      "verdict": "still bright after lowpass: mixing anyway",
+      "costUsd": 0
     },
     {
       "stage": "sfx",
-      "beat": 2,
+      "beat": 9,
       "prompt": "a clean digital whoosh, subtle",
-      "duration_s": 3.5999999999999996,
-      "costUsd": 0.007199999999999999
+      "duration_s": 2.1,
+      "costUsd": 0.004200000000000001
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 11",
+      "gapDb": 3.7,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 11",
+      "gapDb": 10.4,
+      "verdict": "clean",
+      "costUsd": 0
     },
     {
       "stage": "sfx",
-      "beat": 4,
-      "prompt": "a soft rising synth swell",
-      "duration_s": 4,
-      "costUsd": 0.008
+      "beat": 11,
+      "prompt": "thermal receipt printer chattering briefly, mechanical and s",
+      "duration_s": 2.1,
+      "costUsd": 0.004200000000000001
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 15",
+      "gapDb": 42.4,
+      "verdict": "clean",
+      "costUsd": 0
     },
     {
       "stage": "sfx",
-      "beat": 6,
-      "prompt": "a short mechanical printer sound",
-      "duration_s": 4,
-      "costUsd": 0.008
+      "beat": 15,
+      "prompt": "one deep soft impact hit, cinematic and clean",
+      "duration_s": 2.4,
+      "costUsd": 0.0048
     },
     {
-      "stage": "sfx",
-      "beat": 8,
-      "prompt": "a single deep soft impact hit",
-      "duration_s": 3.5999999999999996,
-      "costUsd": 0.007199999999999999
+      "stage": "audio-qa",
+      "file": "ambience bed",
+      "gapDb": 0.5,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "ambience bed",
+      "gapDb": 0.5,
+      "verdict": "still bright after lowpass: mixing anyway",
+      "costUsd": 0
+    },
+    {
+      "stage": "ambience",
+      "prompt": "A single continuous natural soundscape, no music and no melody, that a",
+      "duration_s": 28,
+      "costUsd": 0.056
     },
     {
       "stage": "mix",
       "music": true,
-      "sfx": 5,
-      "note": "stems mixed under VO",
+      "ambience": true,
+      "sfx": 4,
+      "note": "three layers under the voice",
       "costUsd": 0
     },
     {
       "stage": "assemble",
-      "beats": 9,
+      "beats": 16,
       "out": "output/short.mp4",
       "captions": "output/short.srt (soft)",
-      "duration_s": 50.41,
+      "duration_s": 53.27,
       "costUsd": 0
-    },
-    {
-      "stage": "dub",
-      "lang": "es",
-      "dubbing_id": "dzc6VNLa9wuUDBkOOoTx",
-      "out": "output/short.es.mp4",
-      "costUsd": 0.42006670833333337
     }
   ],
-  "costUsd": 0.6959667083333334,
+  "costUsd": 0.7786000000000001,
   "mode": "LIVE",
   "musicPath": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/music.mp3",
   "sfx": [
@@ -138,20 +486,16 @@
       "atSec": 0
     },
     {
-      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-2.mp3",
-      "atSec": 14
+      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-9.mp3",
+      "atSec": 29.075873
     },
     {
-      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-4.mp3",
-      "atSec": 26
+      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-11.mp3",
+      "atSec": 35.575873
     },
     {
-      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-6.mp3",
-      "atSec": 40
-    },
-    {
-      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-8.mp3",
-      "atSec": 54
+      "path": "/Users/mitchellwilliams/Documents/broll-pipeline/.cache/sfx/beat-15.mp3",
+      "atSec": 49.244626000000004
     }
   ]
 }

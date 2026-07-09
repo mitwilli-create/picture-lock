@@ -1,0 +1,68 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#0c1016;overflow:hidden}</style>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Beat 6: the real reroll command runs; one timeline segment swaps out while
+// the other nine stay cached. Iterations, not meetings.
+const cv=document.getElementById('c'), x=cv.getContext('2d');
+const BG='#0c1016', PANEL='#11161d', TEXT='#e8e6df', DIM='#7d8590', ACC='#ffb454', GREEN='#7ee787', EDGE='#1c2430';
+const ease=t=>t<=0?0:t>=1?1:t*t*(3-2*t);
+let D={command:'node pipeline.mjs --reroll-beat 4', outputLines:[], beatCount:10, targetBeat:4};
+window.setData=d=>{D=Object.assign(D,d);};
+
+function timeline(swapP, pulse){
+  const n=D.beatCount, tw=920, th=120, tx=80, ty=430;
+  x.fillStyle=DIM; x.font='500 24px "SF Mono", Menlo, monospace';
+  x.fillText('timeline', tx, ty-22);
+  for(let i=0;i<n;i++){
+    const w=(tw/n)-8, sx=tx+i*(tw/n);
+    let fill = i%2? '#233043':'#2c3a50';
+    if(i===D.targetBeat){
+      if(swapP>0&&swapP<1){ // flip out/in
+        const s=Math.abs(1-swapP*2);
+        x.save(); x.translate(sx+w/2, ty+th/2); x.scale(1, Math.max(0.05,s));
+        x.fillStyle = swapP<0.5 ? '#3a2c22' : ACC;
+        x.beginPath(); x.roundRect(-w/2,-th/2,w,th,10); x.fill(); x.restore();
+        continue;
+      }
+      fill = swapP>=1 ? ACC : fill;
+      if(pulse>0 && swapP<=0){ x.save(); x.globalAlpha=0.5+0.5*Math.sin(pulse*12); x.strokeStyle=ACC; x.lineWidth=5;
+        x.strokeRect(sx-3, ty-3, w+6, th+6); x.restore(); }
+    }
+    x.fillStyle=fill;
+    x.beginPath(); x.roundRect(sx,ty,w,th,10); x.fill();
+    x.fillStyle = i===D.targetBeat&&swapP>=1 ? '#0c1016' : TEXT;
+    x.font='500 26px "SF Mono", Menlo, monospace';
+    x.fillText(String(i+1), sx+w/2-8, ty+th/2+9);
+  }
+}
+
+window.renderFrame=(f,total)=>{
+  x.fillStyle=BG; x.fillRect(0,0,1080,1920);
+  const t=f/(total-1);
+  // terminal panel
+  const px=50, py=740, pw=980, ph=760;
+  x.fillStyle=PANEL; x.strokeStyle=EDGE; x.lineWidth=2;
+  x.beginPath(); x.roundRect(px,py,pw,ph,18); x.fill(); x.stroke();
+  ['#ff5f57','#febc2e','#28c840'].forEach((c,i)=>{x.fillStyle=c;x.beginPath();x.arc(px+34+i*30,py+44,8,0,7);x.fill();});
+  x.font='500 27px "SF Mono", Menlo, monospace';
+  // type the command over first 30%
+  const cmd='$ '+D.command;
+  const chars=Math.floor(ease(Math.min(1,t/0.3))*cmd.length);
+  x.fillStyle=TEXT; x.fillText(cmd.slice(0,chars), px+40, py+130);
+  if(t<0.32&&Math.floor(f/15)%2===0){ x.fillStyle=ACC; x.fillRect(px+46+x.measureText(cmd.slice(0,chars)).width, py+108, 14, 28); }
+  // output lines appear 35%..75%
+  (D.outputLines||[]).forEach((ln,i)=>{
+    const lt=Math.max(0,(t-0.38-i*0.09)/0.08);
+    if(lt<=0) return;
+    x.globalAlpha=ease(Math.min(1,lt));
+    x.fillStyle = ln.startsWith('✓')?GREEN : /cached/.test(ln)?DIM : TEXT;
+    x.fillText(ln, px+40, py+200+i*52);
+    x.globalAlpha=1;
+  });
+  // timeline: pulse during run, swap near the end
+  const swapP=Math.max(0,Math.min(1,(t-0.62)/0.18));
+  timeline(swapP, t>0.3&&t<0.62 ? t : 0);
+};
+</script>

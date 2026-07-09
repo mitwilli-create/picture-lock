@@ -1,52 +1,111 @@
-# Demo: the pipeline explains itself. ~60 seconds, 9 beats.
-# VO = narration · VISUAL = b-roll prompt · SFX = optional accent · SECONDS = beat length
+# The quick-cut pipeline explains itself. ~54 seconds, 16 beats.
+# VO = narration · VISUAL = shot intent · VISUAL-MODE = gen (AI video) | mograph (code-rendered) | card
+# MOGRAPH = template name (required when VISUAL-MODE: mograph) · CAPTION = caption override (else VO)
+# SFX = optional accent · SECONDS = beat length
 
 ## beat 1
-VO: Every content team knows the math. A finished minute of short-form video costs hours of people.
-VISUAL: slow push-in on a dark editing suite, one glowing monitor, cinematic shallow depth of field
-SFX: low room tone with a single soft keyboard click
-SECONDS: 7
+VO: This video was cut by a pipeline, from this text file.
+VISUAL: the real script.md typing itself, beat blocks snap into a 16-segment timeline
+VISUAL-MODE: mograph
+MOGRAPH: md-to-timeline
+SFX: soft mechanical keyboard clicks, rapid typing, close and quiet
+SECONDS: 4
 
 ## beat 2
-VO: A scripter, a voice session, an editor cutting b-roll, a captioning pass. Four hand-offs before anything ships.
-VISUAL: overhead of a production whiteboard filling with sticky notes, timelapse feel
-SECONDS: 7
+VO: The old way needs a crew.
+VISUAL: handheld through a cramped production office, people passing pages over shoulders, gear everywhere, urgent energy, no readable text
+VISUAL-MODE: gen
+SECONDS: 3
 
 ## beat 3
-VO: This short is the counter-argument. It was produced by a pipeline from one plain-text script.
-VISUAL: a markdown file on screen resolving into a video timeline, smooth morph
-SFX: a clean digital whoosh, subtle
-SECONDS: 6
+VO: A voice session.
+VISUAL: voice actor leaning into a large studio microphone mid-word, pop filter close, warm booth light, shallow focus
+VISUAL-MODE: gen
+SECONDS: 3
 
 ## beat 4
-VO: The narration you are hearing was generated through the ElevenLabs text to speech API.
-VISUAL: an audio waveform drawing itself across a dark screen, bone white on black
-SECONDS: 6
+VO: An edit bay. A captions pass.
+VISUAL: editor's hands scrubbing a professional NLE timeline in a dark edit suite, screens glowing, fast jog-wheel movement, no readable text
+VISUAL-MODE: gen
+SECONDS: 3
 
 ## beat 5
-VO: The score under it came from Eleven Music. The accents came from the sound effects API.
-VISUAL: abstract equalizer bars pulsing gently in a dark studio space
-SFX: a soft rising synth swell
-SECONDS: 7
+VO: Hours of people per finished minute.
+VISUAL: overhead timelapse of a cluttered production desk, coffee cups accumulating, daylight sweeping to lamplight, papers shifting
+VISUAL-MODE: gen
+SECONDS: 3
 
 ## beat 6
-VO: Every API call lands in a run manifest with its model, its latency, and its cost in dollars.
-VISUAL: a terminal scrolling structured JSON, monospaced, calm and precise
-SECONDS: 7
+VO: Here, every word is ElevenLabs text to speech.
+VISUAL: sound designer at a studio console, waveforms rolling on monitors behind, hands riding faders, moody light, no readable text
+VISUAL-MODE: gen
+SECONDS: 3.5
 
 ## beat 7
-VO: So when a customer asks what a finished minute costs, the answer is a receipt, not a guess.
-VISUAL: a single receipt printing from a machine in a dark room, dramatic side light
-SFX: a short mechanical printer sound
-SECONDS: 7
+VO: The score is Eleven Music.
+VISUAL: macro shot of patch cables and analog console faders in warm amber light, a hand pushing a fader up, shallow focus, tactile
+VISUAL-MODE: gen
+SECONDS: 3
 
 ## beat 8
-VO: The stages that need a human keep a human. Script approval, brand sign-off, and the final quality pass.
-VISUAL: a hand resting on a mixing desk fader, warm key light, everything else dark
-SECONDS: 7
+VO: Every clip is cut to the narration's timing.
+VISUAL: macro of film being spliced on an editing block, hands precise and quick, dust motes in a beam of light
+VISUAL-MODE: gen
+SECONDS: 3
 
 ## beat 9
-VO: One operator, one command, one costed cut. That is the whole pitch.
-VISUAL: a dark screen with a single cursor blinking, then a play button appearing
-SFX: a single deep soft impact hit
-SECONDS: 6
+VO: Every API call logs its model, latency, and cost.
+VISUAL: terminal scrolling the real run-manifest.json, ElevenLabs line items highlighted
+VISUAL-MODE: mograph
+MOGRAPH: manifest-terminal
+SECONDS: 3.5
+
+## beat 10
+VO: Change one line. Re-render one beat.
+VISUAL: terminal executes the real reroll command, one timeline segment swaps out, cut refreshes
+VISUAL-MODE: mograph
+MOGRAPH: reroll
+SFX: a clean digital whoosh, subtle
+SECONDS: 3.5
+
+## beat 11
+VO: A new cut in minutes, not meetings.
+VISUAL: an empty conference room at dusk, chairs neatly pushed in, lights clicking off row by row, seen from the doorway
+VISUAL-MODE: gen
+SECONDS: 3
+
+## beat 12
+VO: So this video's cost is a receipt, not a guess.
+VISUAL: the real manifest printing as a styled thermal receipt, line by line, real numbers
+VISUAL-MODE: mograph
+MOGRAPH: receipt
+SFX: thermal receipt printer chattering briefly, mechanical and small
+SECONDS: 3.5
+
+## beat 13
+VO: Your team still approves the script and the final cut.
+VISUAL: close-up of a hand annotating a printed storyboard with a pen, warm morning light, papers and coffee on a wooden desk, human and unhurried, no readable text
+VISUAL-MODE: gen
+SECONDS: 3.5
+
+## beat 14
+VO: Una orden más, y este corte se entrega en español.
+CAPTION: One more command, and this cut ships in Spanish.
+VISUAL: language chips cascading from the real dub command, ES badge lands on the timeline
+VISUAL-MODE: mograph
+MOGRAPH: dub-card
+SECONDS: 3.5
+
+## beat 15
+VO: Same manifest. Every language.
+VISUAL: quick intimate portraits of different people wearing earbuds listening, varied ages and skin tones, warm natural light, tight framing on faces, no signage
+VISUAL-MODE: gen
+SECONDS: 3
+
+## beat 16
+VO: One script. One command. One finished cut.
+VISUAL: dark terminal, the actual pipeline command typed, cursor blink, play button blooms
+VISUAL-MODE: mograph
+MOGRAPH: endcard
+SFX: one deep soft impact hit, cinematic and clean
+SECONDS: 4

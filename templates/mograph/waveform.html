@@ -1,0 +1,47 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#0c1016;overflow:hidden}</style>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Beat 3: this beat's REAL VO waveform (data.peaks from the actual mp3) draws
+// itself left to right; three stem rows fan in beneath as the VO names them.
+const cv=document.getElementById('c'), x=cv.getContext('2d');
+const BG='#0c1016', TEXT='#e8e6df', DIM='#7d8590', ACC='#ffb454';
+const ease=t=>t<=0?0:t>=1?1:t*t*(3-2*t);
+let D={peaks:[]};
+window.setData=d=>{D=Object.assign(D,d);};
+
+// deterministic pseudo-stems derived from the real peaks (shifted + damped)
+function stem(peaks,shift,damp){const n=peaks.length,o=[];for(let i=0;i<n;i++)o.push((peaks[(i+shift)%n]*damp+peaks[(i*7+shift)%n]*damp*0.4));return o;}
+
+function drawWave(peaks, cy, h, prog, color, alpha, label, labelAlpha){
+  const n=peaks.length, x0=80, w=920;
+  x.globalAlpha=alpha;
+  x.strokeStyle='#1c2430'; x.lineWidth=1;
+  x.beginPath(); x.moveTo(x0,cy); x.lineTo(x0+w,cy); x.stroke();
+  const upto=Math.floor(prog*n);
+  x.fillStyle=color;
+  for(let i=0;i<upto;i++){
+    const bx=x0+(i/n)*w, bh=Math.max(3,peaks[i]*h);
+    x.fillRect(bx, cy-bh/2, Math.max(1.4,(w/n)*0.7), bh);
+  }
+  if(prog>0&&prog<1){ x.fillStyle=ACC; x.fillRect(x0+prog*w, cy-h/2-8, 3, h+16); }
+  if(label){ x.globalAlpha=alpha*labelAlpha; x.fillStyle=DIM; x.font='500 26px "SF Mono", Menlo, monospace'; x.fillText(label, x0, cy-h/2-18); }
+  x.globalAlpha=1;
+}
+
+window.renderFrame=(f,total)=>{
+  x.fillStyle=BG; x.fillRect(0,0,1080,1920);
+  const t=f/(total-1), peaks=D.peaks&&D.peaks.length?D.peaks:new Array(720).fill(0.2);
+  x.fillStyle=DIM; x.font='500 28px "SF Mono", Menlo, monospace';
+  x.globalAlpha=ease(t/0.1);
+  x.fillText(D.voLabel || '.cache/vo/beat-2.mp3', 80, 560);
+  x.globalAlpha=1;
+  // main VO waveform: draws across the whole beat
+  drawWave(peaks, 800, 380, ease(Math.min(1,t/0.9)), TEXT, 1, 'ElevenLabs · text to speech', ease(Math.min(1,t/0.15)));
+  // stems fan in as VO names them (score ~40%, sfx ~60%)
+  const mT=Math.max(0,(t-0.42)/0.2), sT=Math.max(0,(t-0.62)/0.2);
+  if(mT>0) drawWave(stem(peaks,180,0.55), 1310, 170, ease(Math.min(1,(t-0.42)/0.5)), '#8fb4d9', ease(mT), 'Eleven Music · score', 1);
+  if(sT>0) drawWave(stem(peaks,410,0.35), 1560, 130, ease(Math.min(1,(t-0.62)/0.38)), ACC, ease(sT), 'Sound Effects API · accents', 1);
+};
+</script>

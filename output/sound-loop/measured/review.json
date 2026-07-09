@@ -1,0 +1,33 @@
+[
+  {
+    "scores": {
+      "hierarchy": 6,
+      "music": 3,
+      "nat": 4,
+      "sync": 5,
+      "transitions": 5,
+      "artifacts": 6,
+      "polish": 4
+    },
+    "overall": 5,
+    "ship": false,
+    "fixes": [
+      {
+        "t": 0,
+        "instruction": "Add subtle instrumental music bed to improve cohesion."
+      },
+      {
+        "t": 7,
+        "instruction": "Lower ice pouring SFX; currently too harsh and masks VO."
+      },
+      {
+        "t": 11,
+        "instruction": "Reduce camera shutter SFX volume."
+      },
+      {
+        "t": 26,
+        "instruction": "Add heavy, synced wet thud to deliver the script's 'sound it makes' payoff."
+      }
+    ]
+  }
+]

@@ -19,3 +19,10 @@ output/*.srt
 # personal working scripts, never public
 input/voice-clone-script.md
 input/field-teams-script.md
+
+# session handoff docs, never public
+HANDOFF*.md
+# sound-loop receipts: the review JSONs are evidence, the stems are 400MB of wav
+output/sound-loop/**
+!output/sound-loop/**/
+!output/sound-loop/**/*.json

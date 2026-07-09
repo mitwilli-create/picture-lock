@@ -1,0 +1,135 @@
+{
+  "median": {
+    "scores": {
+      "hierarchy": 7,
+      "music": 6,
+      "nat": 4,
+      "sync": 5,
+      "transitions": 6,
+      "artifacts": 5,
+      "polish": 5
+    },
+    "overall": 5,
+    "ship": false,
+    "fixes": [
+      {
+        "t": 39,
+        "instruction": "Foley lacks physical contact detail.",
+        "regenPrompt": "ballpoint pen writing on thick paper, close perspective, quiet room"
+      },
+      {
+        "t": 4,
+        "instruction": "Action rustle lacks definition.",
+        "regenPrompt": "crisp paper pages shuffling, medium room"
+      },
+      {
+        "t": 0,
+        "instruction": "Keyboard strikes feel robotic.",
+        "regenPrompt": "mechanical keyboard typing rapidly, dry acoustic, close up"
+      }
+    ],
+    "ships": 0,
+    "overalls": [
+      5,
+      5,
+      5
+    ]
+  },
+  "runs": [
+    {
+      "scores": {
+        "hierarchy": 7,
+        "music": 6,
+        "nat": 4,
+        "sync": 4,
+        "transitions": 5,
+        "artifacts": 5,
+        "polish": 4
+      },
+      "overall": 5,
+      "ship": false,
+      "fixes": [
+        {
+          "t": 4,
+          "instruction": "Missing Foley for paper handover.",
+          "regenPrompt": "crisp paper handling and shuffling, office environment"
+        },
+        {
+          "t": 13,
+          "instruction": "Missing Foley for table items.",
+          "regenPrompt": "ceramic coffee cups setting on wooden table, rustling papers, office acoustics"
+        },
+        {
+          "t": 39,
+          "instruction": "Improve pen writing Foley.",
+          "regenPrompt": "ballpoint pen scratching on thick paper, quiet room"
+        }
+      ]
+    },
+    {
+      "scores": {
+        "hierarchy": 7,
+        "music": 6,
+        "nat": 4,
+        "sync": 5,
+        "transitions": 6,
+        "artifacts": 5,
+        "polish": 5
+      },
+      "overall": 5,
+      "ship": false,
+      "fixes": [
+        {
+          "t": 39,
+          "instruction": "Foley lacks physical contact detail.",
+          "regenPrompt": "ballpoint pen writing on thick paper, close perspective, quiet room"
+        },
+        {
+          "t": 4,
+          "instruction": "Action rustle lacks definition.",
+          "regenPrompt": "crisp paper pages shuffling, medium room"
+        },
+        {
+          "t": 0,
+          "instruction": "Keyboard strikes feel robotic.",
+          "regenPrompt": "mechanical keyboard typing rapidly, dry acoustic, close up"
+        }
+      ]
+    },
+    {
+      "scores": {
+        "hierarchy": 6,
+        "music": 6,
+        "nat": 4,
+        "sync": 4,
+        "transitions": 6,
+        "artifacts": 5,
+        "polish": 5
+      },
+      "overall": 5,
+      "ship": false,
+      "fixes": [
+        {
+          "t": 4,
+          "instruction": "Missing sync foley for paper handoff.",
+          "regenPrompt": "crisp paper bundle rustle, indoor office acoustics"
+        },
+        {
+          "t": 13,
+          "instruction": "Lacks table interaction foley.",
+          "regenPrompt": "ceramic coffee cup set on wooden table, paper sheets shuffling"
+        },
+        {
+          "t": 16,
+          "instruction": "Missing screen tap foley.",
+          "regenPrompt": "single light finger tap on glass surface, quiet room"
+        },
+        {
+          "t": 39,
+          "instruction": "Pen foley lacks physical connection.",
+          "regenPrompt": "ballpoint pen scratching on heavy paper stock, close up indoor"
+        }
+      ]
+    }
+  ]
+}

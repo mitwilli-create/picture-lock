@@ -1,0 +1,51 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#0c1016;overflow:hidden}</style>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Beat 5: terminal scrolling the REAL run-manifest.json; ElevenLabs line items
+// and cost figures highlighted.
+const cv=document.getElementById('c'), x=cv.getContext('2d');
+const BG='#0c1016', PANEL='#11161d', TEXT='#e8e6df', DIM='#7d8590', ACC='#ffb454', GREEN='#7ee787', EDGE='#1c2430';
+const ease=t=>t<=0?0:t>=1?1:t*t*(3-2*t);
+let D={lines:[]};
+window.setData=d=>{D=Object.assign(D,d);};
+
+window.renderFrame=(f,total)=>{
+  x.fillStyle=BG; x.fillRect(0,0,1080,1920);
+  const t=f/(total-1);
+  const px=50, py=220, pw=980, ph=1440, lh=34;
+  x.globalAlpha=ease(t/0.08);
+  x.fillStyle=PANEL; x.strokeStyle=EDGE; x.lineWidth=2;
+  x.beginPath(); x.roundRect(px,py,pw,ph,18); x.fill(); x.stroke();
+  ['#ff5f57','#febc2e','#28c840'].forEach((c,i)=>{x.fillStyle=c;x.beginPath();x.arc(px+34+i*30,py+44,8,0,7);x.fill();});
+  x.fillStyle=DIM; x.font='500 24px "SF Mono", Menlo, monospace';
+  x.fillText('output/run-manifest.json', px+96, py+52);
+  x.globalAlpha=1;
+
+  const lines=D.lines||[];
+  const visible=Math.floor((ph-140)/lh);
+  // typing reveal first, then smooth scroll through the file
+  const reveal=Math.floor(ease(Math.min(1,t/0.25))*Math.min(visible,lines.length));
+  const scrollMax=Math.max(0,lines.length-visible);
+  const scroll=ease(Math.max(0,(t-0.3)/0.68))*scrollMax;
+  const first=Math.floor(scroll), frac=scroll-first;
+
+  x.save(); x.beginPath(); x.rect(px+10,py+80,pw-20,ph-100); x.clip();
+  x.font='500 24px "SF Mono", Menlo, monospace';
+  const upto = t<0.3 ? reveal : visible+1;
+  for(let i=0;i<upto;i++){
+    const idx=first+i; if(idx>=lines.length) break;
+    const ln=lines[idx], y=py+120+i*lh-frac*lh;
+    const isCost=/costUsd|costSource/.test(ln), isModel=/eleven|music_v2|multilingual|sound|dubbing|veo|fal/i.test(ln);
+    x.fillStyle = isCost?GREEN : isModel?ACC : /[{}\[\]]/.test(ln.trim())?DIM : TEXT;
+    x.globalAlpha = isCost||isModel ? 1 : 0.82;
+    x.fillText(ln.length>70?ln.slice(0,70)+'…':ln, px+40, y);
+  }
+  x.restore(); x.globalAlpha=1;
+  // footer chip
+  const cT=ease(Math.max(0,(t-0.75)/0.2));
+  if(cT>0){ x.globalAlpha=cT; x.fillStyle=DIM; x.font='500 26px "SF Mono", Menlo, monospace';
+    x.fillText('every call · model · latency · cost', px+40, py+ph+56); x.globalAlpha=1; }
+};
+</script>

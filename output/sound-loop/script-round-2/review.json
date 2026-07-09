@@ -1,0 +1,140 @@
+{
+  "median": {
+    "scores": {
+      "hierarchy": 7,
+      "music": 6,
+      "nat": 4,
+      "sync": 4,
+      "transitions": 5,
+      "artifacts": 6,
+      "polish": 5
+    },
+    "overall": 5,
+    "ship": false,
+    "fixes": [
+      {
+        "t": 1,
+        "instruction": "Unsynced typing loop.",
+        "regenPrompt": "Mechanical keyboard clacks matching erratic typing speed, dry close-up."
+      },
+      {
+        "t": 4,
+        "instruction": "Missing paper foley.",
+        "regenPrompt": "Crisp thick paper shuffle and hand grab, indoor office acoustics."
+      },
+      {
+        "t": 13,
+        "instruction": "Weak desk foley.",
+        "regenPrompt": "Muffled coffee cup set down and paper sliding on wooden table, medium room."
+      },
+      {
+        "t": 39,
+        "instruction": "Thin pen foley.",
+        "regenPrompt": "Close-up heavy ballpoint pen writing on thick paper stack, quiet room."
+      }
+    ],
+    "ships": 0,
+    "overalls": [
+      5,
+      5,
+      5
+    ]
+  },
+  "runs": [
+    {
+      "scores": {
+        "hierarchy": 6,
+        "music": 6,
+        "nat": 4,
+        "sync": 4,
+        "transitions": 5,
+        "artifacts": 6,
+        "polish": 5
+      },
+      "overall": 5,
+      "ship": false,
+      "fixes": [
+        {
+          "t": 5,
+          "instruction": "Missing paper foley.",
+          "regenPrompt": "crisp paper sheets sliding and rustling, indoor office"
+        },
+        {
+          "t": 16,
+          "instruction": "Missing screen tap.",
+          "regenPrompt": "single light fingertip tap on glass screen, quiet room"
+        },
+        {
+          "t": 39,
+          "instruction": "Weak writing foley.",
+          "regenPrompt": "ballpoint pen scratching continuously on thick paper, close up"
+        }
+      ]
+    },
+    {
+      "scores": {
+        "hierarchy": 7,
+        "music": 6,
+        "nat": 4,
+        "sync": 4,
+        "transitions": 5,
+        "artifacts": 6,
+        "polish": 5
+      },
+      "overall": 5,
+      "ship": false,
+      "fixes": [
+        {
+          "t": 1,
+          "instruction": "Unsynced typing loop.",
+          "regenPrompt": "Mechanical keyboard clacks matching erratic typing speed, dry close-up."
+        },
+        {
+          "t": 4,
+          "instruction": "Missing paper foley.",
+          "regenPrompt": "Crisp thick paper shuffle and hand grab, indoor office acoustics."
+        },
+        {
+          "t": 13,
+          "instruction": "Weak desk foley.",
+          "regenPrompt": "Muffled coffee cup set down and paper sliding on wooden table, medium room."
+        },
+        {
+          "t": 39,
+          "instruction": "Thin pen foley.",
+          "regenPrompt": "Close-up heavy ballpoint pen writing on thick paper stack, quiet room."
+        }
+      ]
+    },
+    {
+      "scores": {
+        "hierarchy": 6,
+        "music": 6,
+        "nat": 4,
+        "sync": 5,
+        "transitions": 6,
+        "artifacts": 6,
+        "polish": 5
+      },
+      "overall": 5,
+      "ship": false,
+      "fixes": [
+        {
+          "t": 4,
+          "instruction": "Paper handoff lacks physical weight and sync.",
+          "regenPrompt": "Crisp thick paper slide and subtle cloth rustle, indoor office acoustics."
+        },
+        {
+          "t": 13,
+          "instruction": "Overhead table shot needs specific object interactions.",
+          "regenPrompt": "Light paper shuffling on a wooden table, faint ceramic mug clink, quiet room."
+        },
+        {
+          "t": 36,
+          "instruction": "Receipt graphic needs physical sound sync.",
+          "regenPrompt": "Crisp paper snap and slide, isolated close perspective."
+        }
+      ]
+    }
+  ]
+}

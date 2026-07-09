@@ -1,0 +1,40 @@
+{
+  "winner": 1,
+  "review": {
+    "scores": {
+      "hierarchy": 7,
+      "music": 6,
+      "nat": 4,
+      "sync": 5,
+      "transitions": 6,
+      "artifacts": 5,
+      "polish": 5
+    },
+    "overall": 5,
+    "ship": false,
+    "fixes": [
+      {
+        "t": 39,
+        "instruction": "Foley lacks physical contact detail.",
+        "regenPrompt": "ballpoint pen writing on thick paper, close perspective, quiet room"
+      },
+      {
+        "t": 4,
+        "instruction": "Action rustle lacks definition.",
+        "regenPrompt": "crisp paper pages shuffling, medium room"
+      },
+      {
+        "t": 0,
+        "instruction": "Keyboard strikes feel robotic.",
+        "regenPrompt": "mechanical keyboard typing rapidly, dry acoustic, close up"
+      }
+    ],
+    "ships": 0,
+    "overalls": [
+      5,
+      5,
+      5
+    ]
+  },
+  "estExtraSpendUsd": 0.098
+}
