@@ -23,7 +23,7 @@ Installed via npm, the same entry point is available as a bin: `picture-lock --s
 
 ## Script DSL
 
-`input/script.md` is a Markdown script of beats separated by blank lines. Each beat carries:
+`input/script.md` is a Markdown script of beats separated by blank lines. Every field is optional with defaults, with two constraints the parser enforces: `VISUAL-MODE: gen` requires a `VISUAL:` prompt, and `VISUAL-MODE: mograph` requires a `MOGRAPH:` template name. A typical beat carries:
 
 ```markdown
 VO: One sentence of narration for this beat.
