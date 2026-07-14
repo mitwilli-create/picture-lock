@@ -19,6 +19,21 @@ node pipeline.mjs --script input/script.md           # live run (needs XI_API_KE
 
 Mock mode and live mode assemble identically: mock swaps `say`-generated narration in place of ElevenLabs audio and falls back to colored beat cards for generated shots (motion-graphics beats still render for real, they cost nothing), so the workflow, timing, caption track, and cost manifest are all real before a single credit is spent.
 
+Installed via npm, the same entry point is available as a bin: `picture-lock --script input/script.md --mock`.
+
+## Script DSL
+
+`input/script.md` is a Markdown script of beats separated by blank lines. Each beat carries:
+
+```markdown
+VO: One sentence of narration for this beat.
+VISUAL: What the shot shows, written as a generation prompt.
+SECONDS: 4
+VISUAL-MODE: gen
+```
+
+`VO:` is the narration line the cut is timed to. `VISUAL:` is the generation prompt. `SECONDS:` is the beat length (default 5). `VISUAL-MODE:` routes the beat: `gen` (AI-generated footage, the default when a `VISUAL:` prompt is present), `mograph` (code-rendered motion graphics from the pipeline's real artifacts at $0; requires a `MOGRAPH:` template name), or `card` (a solid-color card, the default when no visual is given and the `--mock`/`--skip-gen` fallback). Beats can also carry `SFX:` (a sound-effect prompt) and `CAPTION:` (an on-screen caption override).
+
 ## Cover mode: bring your own piece
 
 The product promise in one command: you don't need to shoot or source b-roll to cover a piece anymore.
