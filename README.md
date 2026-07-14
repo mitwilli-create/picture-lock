@@ -1,8 +1,8 @@
-# picture-lock
+# PictureLock
 
 An AI production studio that argues its way to a locked cut. A plain-text voiceover script becomes a produced short: a seven-expert creative council debates the direction and a master director adjudicates it into one brief, every generated shot is inspected against standing Craft Law by a review board that can reject and re-prompt, a codified sound doctrine mixes narration, score, and effects to broadcast loudness, and the ElevenLabs-native voice stack (TTS, cloning, music, dubbing) ships the same cut in multiple languages. Every API call is logged to a committed cost receipt.
 
-This project was conceived as a b-roll generator: cover footage on demand, so newsrooms and agencies could spend their videographers on the shots that need humans. Building it taught the real lesson: generation is the cheap part; direction and quality control are the product. picture-lock is that direction layer. Generic coverage is now one stage of seven, and the original promise survives as cover mode below.
+This project was conceived as a b-roll generator: cover footage on demand, so newsrooms and agencies could spend their videographers on the shots that need humans. Building it taught the real lesson: generation is the cheap part; direction and quality control are the product. PictureLock is that direction layer. Generic coverage is now one stage of seven, and the original promise survives as cover mode below.
 
 Built as a forward-deployed reference workflow: the kind of reusable, adoption-ready production system an embedded creative would hand a customer so the value sticks after they leave the room.
 
