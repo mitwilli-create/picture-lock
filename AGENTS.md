@@ -1,10 +1,10 @@
-# AGENTS.md: picture-lock
+# AGENTS.md: PictureLock
 
 Read `~/Documents/mission-control/WORKSPACE.md` first: it defines the multi-agent lane rules for this machine. Your lane here (Codex) is building; Claude Code reviews your output and owns orchestration/memory. CodeRabbit reviews commits and PRs automatically.
 
 ## What this repo is
 
-picture-lock (formerly broll-pipeline; GitHub slug renamed, old URLs 301): an ElevenLabs-native AI production studio. A Markdown voiceover script in `input/` becomes a finished short-form video with narration, council-directed generated shots, composed music, sound design, captions, and optional multilingual dubs. Seven stages orchestrated by `pipeline.mjs`, with every API call cost-logged to `output/run-manifest.json`. Built as a forward-deployed reference workflow; the manifest IS the case-study evidence. Never create a new repo named `broll-pipeline`: that would kill the GitHub redirect submitted job applications depend on. Status: v0.3, end-to-end live.
+PictureLock (repo slug `picture-lock`, formerly broll-pipeline; GitHub slug renamed, old URLs 301): an ElevenLabs-native AI production studio. A Markdown voiceover script in `input/` becomes a finished short-form video with narration, council-directed generated shots, composed music, sound design, captions, and optional multilingual dubs. Seven stages orchestrated by `pipeline.mjs`, with every API call cost-logged to `output/run-manifest.json`. Built as a forward-deployed reference workflow; the manifest IS the case-study evidence. Never create a new repo named `broll-pipeline`: that would kill the GitHub redirect submitted job applications depend on. Status: v0.3, end-to-end live.
 
 ## Hard constraints
 
