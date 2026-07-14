@@ -1,6 +1,8 @@
-# broll-pipeline
+# picture-lock
 
-An ElevenLabs-native pipeline that turns a voiceover script into a produced short-form video: AI narration, generated b-roll, an auto-composed score, sound design, and an optional multilingual dub, assembled into a finished cut with a full call-log of every generation step.
+An AI production studio that argues its way to a locked cut. A plain-text voiceover script becomes a produced short: a seven-expert creative council debates the direction and a master director adjudicates it into one brief, every generated shot is inspected against standing Craft Law by a review board that can reject and re-prompt, a codified sound doctrine mixes narration, score, and effects to broadcast loudness, and the ElevenLabs-native voice stack (TTS, cloning, music, dubbing) ships the same cut in multiple languages. Every API call is logged to a committed cost receipt.
+
+This project was conceived as a b-roll generator: cover footage on demand, so newsrooms and agencies could spend their videographers on the shots that need humans. Building it taught the real lesson: generation is the cheap part; direction and quality control are the product. picture-lock is that direction layer. Generic coverage is now one stage of seven, and the original promise survives as cover mode below.
 
 Built as a forward-deployed reference workflow: the kind of reusable, adoption-ready production system an embedded creative would hand a customer so the value sticks after they leave the room.
 
@@ -16,6 +18,22 @@ node pipeline.mjs --script input/script.md           # live run (needs XI_API_KE
 ```
 
 Mock mode and live mode assemble identically: mock swaps `say`-generated narration in place of ElevenLabs audio and falls back to colored beat cards for generated shots (motion-graphics beats still render for real, they cost nothing), so the workflow, timing, caption track, and cost manifest are all real before a single credit is spent.
+
+Installed via npm, the same entry point is available as a bin: `picture-lock --script input/script.md --mock`.
+
+## Script DSL
+
+`input/script.md` is a Markdown script where each beat begins with a `##` heading; the parser splits beats on those headings. Within a beat every field is optional with defaults, with two constraints the parser enforces: `VISUAL-MODE: gen` requires a `VISUAL:` prompt, and `VISUAL-MODE: mograph` requires a `MOGRAPH:` template name. A typical beat carries:
+
+```markdown
+## beat 1
+VO: One sentence of narration for this beat.
+VISUAL: What the shot shows, written as a generation prompt.
+SECONDS: 4
+VISUAL-MODE: gen
+```
+
+`VO:` is the narration line the cut is timed to. `VISUAL:` is the generation prompt. `SECONDS:` is the beat length (default 5). `VISUAL-MODE:` routes the beat: `gen` (AI-generated footage, the default when a `VISUAL:` prompt is present), `mograph` (code-rendered motion graphics from the pipeline's real artifacts at $0; requires a `MOGRAPH:` template name), or `card` (a solid-color card, the default when no visual is given and the `--mock`/`--skip-gen` fallback). Beats can also carry `SFX:` (a sound-effect prompt) and `CAPTION:` (an on-screen caption override).
 
 ## Cover mode: bring your own piece
 

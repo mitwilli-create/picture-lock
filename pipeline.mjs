@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// pipeline.mjs: ElevenLabs-native b-roll pipeline orchestrator.
+// pipeline.mjs: picture-lock orchestrator. An ElevenLabs-native AI production studio.
 // Resumable (content-hash cache), cost-logged (output/run-manifest.json).
 //
 //   node pipeline.mjs --script input/script.md            # full run
@@ -728,7 +728,7 @@ const beats = existsSync(join(ROOT, SCRIPT)) ? parseScript(SCRIPT) : [];
 const mode = DRY ? 'DRY RUN' : MOCK ? 'MOCK ($0)' : 'LIVE';
 manifest.started = new Date().toISOString();
 manifest.mode = mode;
-console.log(`broll-pipeline: ${beats.length} beats: ${mode}\n`);
+console.log(`picture-lock: ${beats.length} beats: ${mode}\n`);
 
 const stages = {
   voiceover: () => stageVoiceover(beats),

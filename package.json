@@ -1,10 +1,10 @@
 {
-  "name": "broll-pipeline",
+  "name": "picture-lock",
   "version": "0.1.0",
-  "description": "ElevenLabs-native pipeline that turns a voiceover script into a produced short: AI narration, generated b-roll, score, sound design, and an optional dub, assembled with a full cost-logged call manifest. A forward-deployed reference workflow.",
+  "description": "An AI production studio that argues its way to a locked cut: a creative council directs, a review board inspects every take against standing Craft Law, a codified sound doctrine mixes to broadcast loudness, and the ElevenLabs-native voice stack ships the cut in multiple languages, with a cost receipt for every generation. Born as a b-roll generator; the build proved direction and QC are the product.",
   "type": "module",
   "bin": {
-    "broll-pipeline": "./pipeline.mjs"
+    "picture-lock": "./pipeline.mjs"
   },
   "scripts": {
     "start": "node pipeline.mjs --script input/script.md",
