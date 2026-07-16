@@ -36,3 +36,28 @@ The real questions to answer before scoping: sequencing, dependencies, unknowns,
 ## Logged ideas
 
 <!-- New entries are appended below this line, newest at the bottom, each separated by "---". -->
+
+## Add an AI storyboarding layer to the stack
+
+**Status:** Captured
+**Date logged:** 2026-07-16
+**Source:** email
+
+### Summary
+Consider adding a storyboarding product or software into the PictureLock and content-ops systems. The problem observed is having to deploy several prompts and continuously re-engineer them across an instance to get the AI-generated video to look exactly as intended. A dedicated storyboarding step in the stack might resolve that.
+
+### Why it matters
+Prompt re-engineering to hit a target look is slow and unpredictable. A storyboarding layer that fixes intent up front (shots, framing, sequence, look) could make video generation more deterministic and cut the iteration loop, which is the main source of effort and cost in the current flow.
+
+### Rough shape
+- A storyboarding stage that sits before video generation and captures shot list, framing, and desired look as structured intent.
+- Feed that structured storyboard into the generation prompts so intent is set once rather than re-derived per prompt.
+- Evaluate whether to build this in-house or integrate an existing AI storyboarding tool into the stack.
+- Shared surface across both PictureLock and content ops rather than a one-off.
+
+### Open questions for first strategy conversation
+- Build versus integrate: is there an existing AI storyboarding tool worth adopting, or is this a thin in-house layer?
+- What is the storyboard's data shape, and how does it hand off cleanly into the existing generation prompts?
+- Does a storyboarding step measurably reduce iteration count and cost, or just move the effort earlier? Define the success metric (for example, prompt iterations per finished shot).
+- Where does it sequence relative to current pipeline stages, and what depends on it?
+- How much fidelity does the storyboard need before it actually constrains the generated look?
