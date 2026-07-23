@@ -1,483 +1,297 @@
 {
-  "started": "2026-07-09T02:50:17.107Z",
-  "script": "input/script.md",
+  "started": "2026-07-13T06:01:14.077Z",
+  "script": "input/bundle-b-hero-v2.md",
   "dry": false,
   "calls": [
     {
       "stage": "voiceover",
       "beat": 0,
-      "chars": 54,
-      "cached": true,
-      "originalCostUsd": 0.0054,
-      "costUsd": 0
+      "chars": 27,
+      "costUsd": 0.0027
     },
     {
       "stage": "voiceover",
       "beat": 1,
-      "chars": 25,
-      "cached": true,
-      "originalCostUsd": 0.0025000000000000005,
-      "costUsd": 0
+      "chars": 39,
+      "costUsd": 0.0039000000000000003
     },
     {
       "stage": "voiceover",
       "beat": 2,
-      "chars": 16,
-      "cached": true,
-      "originalCostUsd": 0.0016,
-      "costUsd": 0
+      "chars": 34,
+      "costUsd": 0.0034000000000000002
     },
     {
       "stage": "voiceover",
       "beat": 3,
-      "chars": 29,
-      "cached": true,
-      "originalCostUsd": 0.0029000000000000002,
-      "costUsd": 0
+      "chars": 32,
+      "costUsd": 0.0032
     },
     {
       "stage": "voiceover",
       "beat": 4,
-      "chars": 36,
-      "cached": true,
-      "originalCostUsd": 0.0036,
-      "costUsd": 0
+      "chars": 66,
+      "costUsd": 0.006600000000000001
     },
     {
       "stage": "voiceover",
       "beat": 5,
-      "chars": 46,
-      "cached": true,
-      "originalCostUsd": 0.0046,
-      "costUsd": 0
+      "chars": 34,
+      "costUsd": 0.0034000000000000002
     },
     {
-      "stage": "voiceover",
-      "beat": 6,
-      "chars": 26,
-      "cached": true,
-      "originalCostUsd": 0.0026,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 7,
-      "chars": 44,
-      "cached": true,
-      "originalCostUsd": 0.0044,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 8,
-      "chars": 49,
-      "cached": true,
-      "originalCostUsd": 0.004900000000000001,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 9,
-      "chars": 36,
-      "cached": true,
-      "originalCostUsd": 0.0036,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 10,
-      "chars": 35,
-      "cached": true,
-      "originalCostUsd": 0.0035000000000000005,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 11,
-      "chars": 47,
-      "cached": true,
-      "originalCostUsd": 0.0047,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 12,
-      "chars": 54,
-      "cached": true,
-      "originalCostUsd": 0.0054,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 13,
-      "chars": 50,
-      "cached": true,
-      "originalCostUsd": 0.005000000000000001,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 14,
-      "chars": 30,
-      "cached": true,
-      "originalCostUsd": 0.003,
-      "costUsd": 0
-    },
-    {
-      "stage": "voiceover",
-      "beat": 15,
-      "chars": 42,
-      "cached": true,
-      "originalCostUsd": 0.004200000000000001,
-      "costUsd": 0
+      "stage": "council",
+      "model": "claude-opus-4-8",
+      "shots": 6,
+      "costSource": "estimate",
+      "costUsd": 2.0675
     },
     {
       "stage": "visuals",
       "beat": 0,
-      "mode": "mograph",
-      "template": "md-to-timeline",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 8,
-      "mode": "mograph",
-      "template": "manifest-terminal",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 9,
-      "mode": "mograph",
-      "template": "reroll",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 11,
-      "mode": "mograph",
-      "template": "receipt",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 13,
-      "mode": "mograph",
-      "template": "dub-card",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 15,
-      "mode": "mograph",
-      "template": "endcard",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "council",
-      "cached": true,
-      "shots": 10,
-      "originalCostUsd": 3.5042,
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 1,
       "mode": "gen",
       "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
+      "requestId": "019f5a12-f058-76b2-acb6-51135672ed99",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
     },
     {
       "stage": "visuals",
       "beat": 2,
       "mode": "gen",
       "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
+      "requestId": "019f5a12-f05c-7db2-9d58-c93388f921d2",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
     },
     {
       "stage": "visuals",
       "beat": 4,
       "mode": "gen",
       "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
+      "requestId": "019f5a12-f053-7713-a7bb-d49a2ef57259",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
     },
     {
       "stage": "visuals",
-      "beat": 5,
+      "beat": 1,
       "mode": "gen",
       "medium": "animated",
-      "cached": true,
-      "originalCostUsd": 0.48,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 6,
-      "mode": "gen",
-      "medium": "animated",
-      "cached": true,
-      "originalCostUsd": 0.48,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 7,
-      "mode": "gen",
-      "medium": "animated",
-      "cached": true,
-      "originalCostUsd": 0.48,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 10,
-      "mode": "gen",
-      "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 12,
-      "mode": "gen",
-      "medium": "animated",
-      "cached": true,
-      "originalCostUsd": 0.48,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 14,
-      "mode": "gen",
-      "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 3,
-      "mode": "gen",
-      "medium": "animated",
-      "requestId": "019f44c8-e106-7292-8a28-5e0db09731b6",
+      "requestId": "019f5a13-2446-7012-a9c5-1693cce98d2f",
       "requestedSeconds": 4,
       "costSource": "estimate",
       "costUsd": 0.48
     },
     {
+      "stage": "visuals",
+      "beat": 5,
+      "mode": "gen",
+      "medium": "animated",
+      "requestId": "019f5a13-2426-7590-b9fc-eee6fe076ece",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.48
+    },
+    {
+      "stage": "visuals",
+      "beat": 3,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f5a12-f054-70a1-bded-f561fbebc13d",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "review",
+      "beat": 0,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Strong continuous motion across all five frames — the shot genuinely pushes and rises from tight sun-flared pl",
+      "costUsd": 0.0894
+    },
+    {
       "stage": "review",
       "beat": 1,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "Text-bearing prop is razor-legible and correct: 'MERIDIEM', 'VINO BLANCO DE ESPAÑA' with correct tilde on ESPA",
+      "costUsd": 0.0878
     },
     {
       "stage": "review",
       "beat": 2,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "Continuous strong motion across all five frames: the pour is active and the glass visibly fills from bottom, s",
+      "costUsd": 0.0654
     },
     {
       "stage": "review",
       "beat": 3,
       "verdict": "accept",
       "take": 0,
-      "reasons": "Literalism is strong: VO 'An edit bay. A captions pass.' is matched by a convincing DaVinci-style NLE timeline",
-      "costUsd": 0.0846
+      "switchMedium": "live",
+      "reasons": "Literalism holds: the VO 'Hecho para brindar en la azotea' (made for toasting on the rooftop) is matched exact",
+      "costUsd": 0.0738
     },
     {
       "stage": "review",
       "beat": 4,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "Literalism holds: VO names photos coming out effortlessly when the light turns generous, and the cut delivers ",
+      "costUsd": 0.08
     },
     {
       "stage": "review",
       "beat": 5,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "review",
-      "beat": 6,
-      "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "review",
-      "beat": 7,
-      "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "review",
-      "beat": 10,
-      "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "review",
-      "beat": 12,
-      "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "review",
-      "beat": 14,
-      "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "End card matches the visual system precisely: cream-and-gold MERIDIEM hero can, pale-gold wine glass, Giralda ",
+      "costUsd": 0.0792
     },
     {
       "stage": "score",
-      "seconds": 56,
+      "seconds": 25,
       "model": "music_v2",
       "out": ".cache/music.mp3",
       "briefed": true,
-      "costUsd": 0.13999999999999999
+      "costUsd": 0.0625
     },
     {
       "stage": "audio-qa",
       "file": "sfx beat 0",
-      "gapDb": 6.4,
-      "verdict": "harsh: regenerating softer",
-      "costUsd": 0
-    },
-    {
-      "stage": "audio-qa",
-      "file": "sfx beat 0",
-      "gapDb": 12.2,
+      "gapDb": 26.8,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "sfx",
       "beat": 0,
-      "prompt": "soft mechanical keyboard clicks, rapid typing, close and qui",
+      "prompt": "warm evening air with distant swifts calling and soft city m",
+      "duration_s": 1.7999999999999998,
+      "costUsd": 0.0035999999999999995
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 1",
+      "gapDb": 7.7,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 1",
+      "gapDb": 11.6,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 1,
+      "prompt": "can settling into crushed ice, soft wet crackle",
       "duration_s": 2.4,
       "costUsd": 0.0048
     },
     {
       "stage": "audio-qa",
-      "file": "sfx beat 9",
-      "gapDb": 0.8,
+      "file": "sfx beat 2",
+      "gapDb": 7.5,
       "verdict": "harsh: regenerating softer",
       "costUsd": 0
     },
     {
       "stage": "audio-qa",
-      "file": "sfx beat 9",
-      "gapDb": 4.4,
-      "verdict": "still bright after lowpass: mixing anyway",
-      "costUsd": 0
-    },
-    {
-      "stage": "sfx",
-      "beat": 9,
-      "prompt": "a clean digital whoosh, subtle",
-      "duration_s": 2.1,
-      "costUsd": 0.004200000000000001
-    },
-    {
-      "stage": "audio-qa",
-      "file": "sfx beat 11",
-      "gapDb": 3.7,
-      "verdict": "harsh: regenerating softer",
-      "costUsd": 0
-    },
-    {
-      "stage": "audio-qa",
-      "file": "sfx beat 11",
-      "gapDb": 10.4,
+      "file": "sfx beat 2",
+      "gapDb": 9.3,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "sfx",
-      "beat": 11,
-      "prompt": "thermal receipt printer chattering briefly, mechanical and s",
+      "beat": 2,
+      "prompt": "wine pouring into a glass with gentle lively fizz and a soft",
       "duration_s": 2.1,
       "costUsd": 0.004200000000000001
     },
     {
       "stage": "audio-qa",
-      "file": "sfx beat 15",
-      "gapDb": 42.4,
+      "file": "sfx beat 3",
+      "gapDb": 25.5,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "sfx",
-      "beat": 15,
-      "prompt": "one deep soft impact hit, cinematic and clean",
+      "beat": 3,
+      "prompt": "one clear clink of wine glasses and easy overlapping laughte",
+      "duration_s": 2.1,
+      "costUsd": 0.004200000000000001
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 4",
+      "gapDb": 21.7,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 4,
+      "prompt": "bursts of warm laughter and animated spanish chatter under e",
+      "duration_s": 2.4,
+      "costUsd": 0.0048
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 5",
+      "gapDb": 11.2,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 5,
+      "prompt": "soft final fizz swelling once then fading under distant city",
       "duration_s": 2.4,
       "costUsd": 0.0048
     },
     {
       "stage": "audio-qa",
       "file": "ambience bed",
-      "gapDb": 0.5,
-      "verdict": "harsh: regenerating softer",
-      "costUsd": 0
-    },
-    {
-      "stage": "audio-qa",
-      "file": "ambience bed",
-      "gapDb": 0.5,
-      "verdict": "still bright after lowpass: mixing anyway",
+      "gapDb": 25.7,
+      "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "ambience",
-      "prompt": "A single continuous natural soundscape, no music and no melody, that a",
-      "duration_s": 28,
-      "costUsd": 0.056
+      "prompt": "A continuous open-air Sevilla rooftop at golden hour: high, airy dista",
+      "duration_s": 25,
+      "costUsd": 0.05
     },
     {
       "stage": "mix",
       "music": true,
       "ambience": true,
-      "sfx": 4,
+      "sfx": 6,
       "note": "three layers under the voice",
       "costUsd": 0
     },
     {
       "stage": "assemble",
-      "beats": 16,
+      "beats": 6,
       "out": "output/short.mp4",
       "captions": "output/short.srt (soft)",
-      "duration_s": 53.27,
+      "duration_s": 22.63,
       "costUsd": 0
     }
   ],
-  "costUsd": 0.7786000000000001,
+  "costUsd": 5.265200000000002,
   "mode": "LIVE",
   "musicPath": ".cache/music.mp3",
   "sfx": [
@@ -486,16 +300,24 @@
       "atSec": 0
     },
     {
-      "path": ".cache/sfx/beat-9.mp3",
-      "atSec": 29.075873
+      "path": ".cache/sfx/beat-1.mp3",
+      "atSec": 3
     },
     {
-      "path": ".cache/sfx/beat-11.mp3",
-      "atSec": 35.575873
+      "path": ".cache/sfx/beat-2.mp3",
+      "atSec": 7
     },
     {
-      "path": ".cache/sfx/beat-15.mp3",
-      "atSec": 49.244626000000004
+      "path": ".cache/sfx/beat-3.mp3",
+      "atSec": 10.5
+    },
+    {
+      "path": ".cache/sfx/beat-4.mp3",
+      "atSec": 14
+    },
+    {
+      "path": ".cache/sfx/beat-5.mp3",
+      "atSec": 18.597551
     }
   ]
 }

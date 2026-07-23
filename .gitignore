@@ -26,3 +26,9 @@ HANDOFF*.md
 output/sound-loop/**
 !output/sound-loop/**/
 !output/sound-loop/**/*.json
+
+# Python bytecode + ffmpeg two-pass artifacts (regenerated every run)
+__pycache__/
+*.pyc
+ffmpeg2pass-*.log
+ffmpeg2pass-*.log.mbtree
