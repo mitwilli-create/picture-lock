@@ -1,0 +1,123 @@
+{
+  "topic": "broll-pipeline / PictureLock video edits",
+  "generatedBy": "distill-session-preferences",
+  "lastRun": "2026-07-14",
+  "sourceWindow": {
+    "days": 4,
+    "sessionsScanned": 238,
+    "repoScopedSignals": 78,
+    "note": "rounds 1-7 of PictureLock explainer edits + storytellermitch-site visual corrections"
+  },
+  "rules": [
+    {
+      "id": "9b739d5136",
+      "text": "Sound design must be diegetically accurate and professionally mixed \u2014 missing ambient/sync sound (e.g. \"can't hear the fish hit the ice\") is a defect, and so is over-produced nat sound/effects on quiet shots (\"we may be inventing sound where there isn't movement to justify it\"). Default to music + vocal track alone when a shot has little active movement; add sync/ambient sound only where the visual action justifies it.",
+      "evidenceCount": 4,
+      "firstSeen": "2026-07-08",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "b0bd655683",
+      "text": "Motion/animation must read as continuous and purposeful \u2014 no jump cuts, no repeated/looping shots, no dead (motionless) stretches. This mirrors the same rule found independently in the thestorytellermitch.com distillation \u2014 treat it as a cross-project standard, not project-specific.",
+      "evidenceCount": 7,
+      "firstSeen": "2026-07-13",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "d533f9dc5f",
+      "text": "Before declaring a cut/draft done, run an explicit blind/critical review pass \u2014 check category assignments make sense, flag anything \"too technical\" or under-justified, and be willing to say \"kill this completely\" rather than polish something that doesn't work.",
+      "evidenceCount": 3,
+      "firstSeen": "2026-07-11",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "53a5c5699c",
+      "text": "Expect timestamp-anchored, surgical review. Notes arrive as exact timecodes (\":02 pop\", \":17 stamp gets lost\", \"1:03 make bigger\", \":58 dead gap\") with many small precise edits per round \u2014 often sub-second and frame-level. Frame-verify EACH note at its exact timestamp before claiming it done; a round is not one big change, it is a dozen exact ones.",
+      "evidenceCount": 8,
+      "firstSeen": "2026-07-13",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "cfee428bbd",
+      "text": "Elements must never get lost against busy art. The fix Mitchell reaches for is SOLID backing \u2014 a solid oxblood or solid black cell with white/bold text \u2014 not transparency, thin strokes, or a knockout that a blend can defeat. When a label rides over animation, give it an opaque plate and bold it. Bigger and bolder beats subtle every time.",
+      "evidenceCount": 5,
+      "firstSeen": "2026-07-14",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "6c8e0fc9c9",
+      "text": "Fill the negative space. \"Reads as empty\", \"boring\", small text with big black margins, or a centered element floating in dead space are all defects to him \u2014 scale key graphics up to use the frame and make the opening especially dynamic to hook the viewer.",
+      "evidenceCount": 4,
+      "firstSeen": "2026-07-14",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "e58263a09f",
+      "text": "Sync visuals to the vocal track and add comprehension beats. Each label/verdict should reveal as its word is spoken (not on a generic timer); insert pauses between items so the audience can read each one; and keep one graphic on screen until the next is ready \u2014 never leave a dead gap between animations.",
+      "evidenceCount": 5,
+      "firstSeen": "2026-07-14",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "1ce048555f",
+      "text": "Audio is scrutinized at the sample level. Hunt and remove pops, clicks, blips, plosive p-pops, tinny/harsh sibilance, trailing artifacts, and any SFX that does not earn its place (pencil-scratch, redundant whooshes). Keep music comfortably under the voice \u2014 he will ask to bring the bed down a notch. Every SFX and every dB is fair game for a note.",
+      "evidenceCount": 6,
+      "firstSeen": "2026-07-14",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "2d1ce42b29",
+      "text": "Show the real, recognizable him, and control on-screen text literally. His actual likeness must read as HIM (\"oh, that is him\"); his face is never cut off; and on-screen name/label wording is exact (e.g. \"remove I am from I am Mitchell \u2014 it should read Mitchell Williams, same size font\"). Generic/stock/\"synthetic\"/\"just a zoomed clip\"/\"looks like it is looping\" are kill words \u2014 the answer is more original, more dynamic, more him.",
+      "evidenceCount": 4,
+      "firstSeen": "2026-07-14",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "1b16184359",
+      "text": "Route creative and design decisions through a council of models + an adjudicator, then collect his verdicts one question at a time in a low-cognitive-load interview. He explicitly asks for this on non-trivial redesigns and prefers deciding item-by-item, never a wall of choices.",
+      "evidenceCount": 3,
+      "firstSeen": "2026-07-14",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "f36f6528c5",
+      "text": "Every number and claim on screen must be true and reconciled to the live site. He will notice and challenge inconsistencies (e.g. $14.20 vs $8.26 vs $9.51 for one film; platform counts; stale screenshots). Cross-check costs, counts, copy, and captured site shots against current reality before shipping \u2014 the whole thesis is \"every claim links to a source.\"",
+      "evidenceCount": 3,
+      "firstSeen": "2026-07-13",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    },
+    {
+      "id": "3557992d29",
+      "text": "When scope warrants, deliver changes as a self-contained handover prompt for a fresh instance, and isolate any file-mutating work in a git worktree to avoid colliding with sibling sessions running on the same repo.",
+      "evidenceCount": 3,
+      "firstSeen": "2026-07-14",
+      "lastSeen": "2026-07-14",
+      "status": "active",
+      "supersedes": []
+    }
+  ],
+  "writeTarget": "AGENTS.md",
+  "writeTargetNote": "Converged 2026-07-20 (Session 9). Render the managed block into AGENTS.md, NOT CLAUDE.md. CLAUDE.md is an @AGENTS.md import bridge; writing here would duplicate the rules into both files."
+}

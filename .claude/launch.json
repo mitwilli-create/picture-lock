@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "career-ops-dashboard-demo",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "cd /Users/mitchellwilliams/Documents/career-ops && exec node dashboard-server.mjs --demo --port=3098"],
+      "port": 3098
+    },
+    {
+      "name": "bundle-b-review",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "cd /private/tmp/claude-501/-Users-mitchellwilliams-Documents-broll-pipeline/1ede8d49-cceb-4ad7-b72e-c68664898407/scratchpad/review && exec python3 -m http.server 8091"],
+      "port": 8091
+    }
+  ]
+}
