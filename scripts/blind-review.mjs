@@ -1,26 +1,30 @@
-// Blind sound-mix review: Gemini 3.1 Pro (it can HEAR) reviews the cut with
-// zero context about versions, changes, or that AI made it. The review board's
-// missing sense, prototyped. Usage: node blind-review.mjs <video>
+// Blind sound-mix review: the multimodal provider adapter (Gemini is the current
+// video-capable route) reviews the cut with zero context about versions, changes,
+// or that artificial intelligence made it. Usage: node blind-review.mjs <video>
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { execFileSync } from 'child_process';
 import { join, basename, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { homedir } from 'os';
+import { callMultimodalText } from '../lib/provider-failover.mjs';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const VIDEO = process.argv[2] ?? join(ROOT, 'output', 'cover.mp4');
 const SP = join(ROOT, 'output');
 const CAREER_ENV = join(homedir(), 'Documents', 'career-ops', '.env');
-const GEMINI = process.env.GEMINI_API_KEY
-  ?? (existsSync(CAREER_ENV) ? readFileSync(CAREER_ENV, 'utf8').match(/^GEMINI_API_KEY=(.+)$/m)?.[1]?.trim() : undefined);
-const KEY = GEMINI;
-if (!KEY) throw new Error('set GEMINI_API_KEY (env, or GEMINI_API_KEY=... in ~/Documents/career-ops/.env)');
+const careerEnv = existsSync(CAREER_ENV) ? readFileSync(CAREER_ENV, 'utf8') : '';
+for (const key of ['GEMINI_API_KEY', 'OPENAI_API_KEY', 'XAI_API_KEY']) {
+  if (!process.env[key]) {
+    const value = careerEnv.match(new RegExp(`^${key}=(.+)$`, 'm'))?.[1]?.trim();
+    if (value) process.env[key] = value;
+  }
+}
 
 // small proxy, original audio untouched (the review is about the sound)
 const proxy = join(SP, 'review-proxy.mp4');
 execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', VIDEO, '-vf', 'scale=-2:480', '-crf', '30', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '128k', proxy]);
 const b64 = readFileSync(proxy).toString('base64');
-console.log(`proxy ${(b64.length / 1e6 * 0.75).toFixed(1)}MB → gemini-3.1-pro-preview`);
+console.log(`proxy ${(b64.length / 1e6 * 0.75).toFixed(1)}MB → multimodal provider adapter`);
 
 const PROMPT = `You are a veteran re-recording mixer and sound designer reviewing a 28-second vertical short film with narration. You have no other context and no stake in the piece. Review ONLY the soundtrack, harshly and honestly, as if for a paying client deciding whether to ship it.
 
@@ -35,18 +39,16 @@ Score each 0-10 with one-line justification:
 
 Then: OVERALL 0-10, ship/no-ship verdict, and the top 3 fixes in priority order with timestamps.`;
 
-const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json', 'x-goog-api-key': KEY },
-  signal: AbortSignal.timeout(300_000),
-  body: JSON.stringify({
-    contents: [{ parts: [{ inline_data: { mime_type: 'video/mp4', data: b64 } }, { text: PROMPT }] }],
-  }),
+const result = await callMultimodalText({
+  content: [
+    { type: 'video', source: { media_type: 'video/mp4', data: b64 } },
+    { type: 'text', text: PROMPT },
+  ],
+  preferredProvider: 'google-api',
+  maxTokens: 4000,
 });
-if (!r.ok) throw new Error(`gemini ${r.status}: ${(await r.text()).slice(0, 400)}`);
-const j = await r.json();
-const text = j.candidates?.[0]?.content?.parts?.map((p) => p.text ?? '').join('') ?? JSON.stringify(j).slice(0, 500);
+const { text, provider, attempts } = result;
 const outPath = join(SP, `blind-review-${basename(VIDEO, '.mp4')}.md`);
-writeFileSync(outPath, `# Blind sound review: ${basename(VIDEO)} (gemini-3.1-pro-preview, ${new Date().toISOString().slice(0, 16)})\n\n${text}\n`);
+writeFileSync(outPath, `# Blind sound review: ${basename(VIDEO)}\n\n- provider: ${provider}\n- attempts: ${JSON.stringify(attempts)}\n- checked_at: ${new Date().toISOString().slice(0, 16)}\n\n${text}\n`);
 console.log(text);
 console.log(`\n✓ saved → ${outPath}`);

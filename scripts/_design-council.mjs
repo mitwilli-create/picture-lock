@@ -2,23 +2,12 @@
 // out to premium models role-playing as motion designers / explainer producers,
 // collect concrete canvas-executable concepts, then a final adjudicator model
 // synthesizes ONE executable workflow. Usage: node scripts/_design-council.mjs
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { homedir } from 'os';
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
+import { callText } from '../lib/provider-failover.mjs';
 
 const OUT = 'output/design-council-gates';
 mkdirSync(OUT, { recursive: true });
-const env = p => existsSync(p) ? readFileSync(p, 'utf8') : '';
-const CAREER = env(join(homedir(), 'Documents', 'career-ops', '.env'));
-const LOCAL = env('.env');
-const get = (src, k) => src.match(new RegExp(`^${k}=([^#\\n]+)`, 'm'))?.[1]?.trim();
-const GEMINI = get(CAREER, 'GEMINI_API_KEY');
-const OPENAI = get(CAREER, 'OPENAI_API_KEY');
-const XAI = get(CAREER, 'XAI_API_KEY');
-const ANTHROPIC = get(LOCAL, 'ANTHROPIC_API_KEY') ?? get(CAREER, 'ANTHROPIC_API_KEY');
-const OPUS = get(CAREER, 'ANTHROPIC_MODEL_OPUS') ?? 'claude-opus-4-7';
-const GPT = get(CAREER, 'OPENAI_MODEL_PRO') ?? 'gpt-5.5-pro';
-const GROK = get(CAREER, 'XAI_MODEL_HEAVY') ?? get(CAREER, 'XAI_MODEL_BETA') ?? 'grok-4';
 
 const BRIEF = `You are a senior motion designer and explainer-video producer. Give CONCRETE, executable ideas — this will be built in a 2D HTML canvas mograph engine, no 3D, no external assets.
 
@@ -43,23 +32,23 @@ async function retry(name, fn, tries = 3) {
   for (let a = 1; ; a++) { try { return await fn(); }
     catch (e) { if (a >= tries) throw e; console.log(`${name} try ${a}: ${String(e).slice(0,160)}`); await new Promise(r=>setTimeout(r,15000*a)); } }
 }
-const gemini = () => fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent', {
-  method:'POST', headers:{'Content-Type':'application/json','x-goog-api-key':GEMINI}, signal:AbortSignal.timeout(300000),
-  body:JSON.stringify({contents:[{parts:[{text:BRIEF}]}]})}).then(async r=>{ if(!r.ok) throw new Error('gemini '+r.status+await r.text()); const j=await r.json(); return j.candidates[0].content.parts.map(p=>p.text||'').join(''); });
-const gpt = () => fetch('https://api.openai.com/v1/responses', {
-  method:'POST', headers:{'content-type':'application/json',authorization:`Bearer ${OPENAI}`}, signal:AbortSignal.timeout(300000),
-  body:JSON.stringify({model:GPT,input:[{role:'user',content:[{type:'input_text',text:BRIEF}]}]})}).then(async r=>{ if(!r.ok) throw new Error('gpt '+r.status+await r.text()); const j=await r.json(); return j.output_text ?? j.output.flatMap(o=>o.content??[]).filter(c=>c.type==='output_text').map(c=>c.text).join(''); });
-const opus = () => fetch('https://api.anthropic.com/v1/messages', {
-  method:'POST', headers:{'content-type':'application/json','x-api-key':ANTHROPIC,'anthropic-version':'2023-06-01'}, signal:AbortSignal.timeout(300000),
-  body:JSON.stringify({model:OPUS,max_tokens:4000,messages:[{role:'user',content:BRIEF}]})}).then(async r=>{ if(!r.ok) throw new Error('opus '+r.status+await r.text()); const j=await r.json(); return j.content.filter(b=>b.type==='text').map(b=>b.text).join(''); });
-const grok = () => fetch('https://api.x.ai/v1/chat/completions', {
-  method:'POST', headers:{'content-type':'application/json',authorization:`Bearer ${XAI}`}, signal:AbortSignal.timeout(300000),
-  body:JSON.stringify({model:GROK,messages:[{role:'user',content:BRIEF}]})}).then(async r=>{ if(!r.ok) throw new Error('grok '+r.status+await r.text()); const j=await r.json(); return j.choices[0].message.content; });
+const providerStarts = {
+  claude: 'claude-cli',
+  openai: 'codex-cli',
+  gemini: 'antigravity-cli',
+  grok: 'grok-cli',
+};
+const providerFns = Object.fromEntries(Object.entries(providerStarts).map(([name, preferredProvider]) => [
+  name,
+  () => callText({ content: BRIEF, maxTokens: 4000, preferredProvider }).then((result) => result.text),
+]));
+const withProviderFailover = (primary) => providerFns[primary]();
+const opus = () => withProviderFailover('claude');
 
-const panel = [['gemini',gemini],['gpt5',gpt],['opus',opus]]; // grok chat endpoint deprecated (see .env)
+const panel = [['gemini',()=>withProviderFailover('gemini')],['gpt5',()=>withProviderFailover('openai')],['opus',opus]];
 const results = await Promise.allSettled(panel.map(async ([n,f])=>{ const t=await retry(n,f); writeFileSync(join(OUT,`${n}.md`),`# ${n}\n\n${t}\n`); console.log(`OK ${n} (${t.length}b)`); return {n,t}; }));
 const ok = results.filter(r=>r.status==='fulfilled').map(r=>r.value);
-console.log(`\n${ok.length}/4 responded`);
+console.log(`\n${ok.length}/${panel.length} responded`);
 
 // adjudicate with Opus: synthesize ONE executable concept
 if (ok.length) {
@@ -71,13 +60,11 @@ if (ok.length) {
 Keep it tight and implementation-focused.
 
 PROPOSALS:\n\n${combined}`;
-  const final = await retry('adjudicator', ()=>fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST', headers:{'content-type':'application/json','x-api-key':ANTHROPIC,'anthropic-version':'2023-06-01'}, signal:AbortSignal.timeout(300000),
-    body:JSON.stringify({model:OPUS,max_tokens:3000,messages:[{role:'user',content:ADJ}]})}).then(async r=>{ if(!r.ok) throw new Error('adj '+r.status+await r.text()); const j=await r.json(); return j.content.filter(b=>b.type==='text').map(b=>b.text).join(''); }));
+  const final = await retry('adjudicator', () => callText({ content: ADJ, maxTokens: 3000 }).then((result) => result.text));
   writeFileSync(join(OUT,'ADJUDICATED.md'),`# Adjudicated gate-animation spec\n\n${final}\n`);
   console.log('\n===== ADJUDICATED =====\n'+final);
 }
 const log = JSON.parse(readFileSync('output/takes/spend-log.json','utf8'));
-log.push({when:'2026-07-14',what:`design council (gates redesign) ${ok.length} models + adjudicator`,est_cost_usd:+(ok.length*0.05+0.05).toFixed(2)});
+log.push({when:'2026-07-14',what:`design council (gates redesign) ${ok.length} models + adjudicator via provider failover`,est_cost_usd:0});
 writeFileSync('output/takes/spend-log.json',JSON.stringify(log,null,2)+'\n');
 console.log('done');

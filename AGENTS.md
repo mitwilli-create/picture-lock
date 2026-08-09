@@ -1,6 +1,6 @@
 # AGENTS.md: PictureLock
 
-Read `~/Documents/mission-control/WORKSPACE.md` first: it defines the multi-agent lane rules for this machine. Your lane here (Codex) is building; Claude Code reviews your output and owns orchestration/memory. CodeRabbit reviews commits and PRs automatically.
+Read `~/Documents/mission-control/WORKSPACE.md` first: it defines the multi-agent lane rules for this machine. Your lane here (Codex) is building; Claude Code reviews your output and owns orchestration/memory. Local gates and review skills are the default. Hosted review services are explicit opt-in only and never run automatically or through metered overage.
 
 ## What this repo is
 
@@ -8,13 +8,26 @@ PictureLock (repo slug `picture-lock`, formerly broll-pipeline; GitHub slug rena
 
 ## Hard constraints
 
-- **Live runs spend real money** (ElevenLabs TTS/Music/SFX/Dubbing, fal.ai Veo for generated video at ~$0.10/sec, Anthropic for the creative council). Develop against `--mock` (full $0 run: macOS `say` + ffmpeg + mograph) or `--dry-run`. Never trigger a live run unless Mitchell asked for one.
+- **Live runs spend real money** (ElevenLabs TTS/Music/SFX/Dubbing, fal.ai Veo for generated video at ~$0.10/sec, and any configured metered multimodal fallback). Develop against `--mock` (full $0 run: macOS `say` + ffmpeg + mograph) or `--dry-run`. Never trigger a live run unless Mitchell asked for one.
 - **Never break manifest logging.** Every paid call logs model, params, cost, latency to `output/run-manifest.json`; cached artifacts carry their original cost forward. The manifest is deliberately committed even though other `output/*` artifacts are gitignored.
 - **Budget ceiling:** `--budget N` (default 50) is a hard spend cap. Don't weaken or bypass it.
 - **`.env` holds API keys** (XI_API_KEY, XI_VOICE_ID, FAL_KEY, ANTHROPIC_API_KEY) and is gitignored, along with personal working scripts in `input/`. Never commit either.
 - **Content-hash caching:** `.cache/` is keyed on SHA256 of inputs; only changed beats regenerate. Preserve this invariant when touching stage code, or cost logging and reruns both break.
 - **Endpoint paths marked VERIFY** in `lib/elevenlabs.mjs` (Music, SFX, Dubbing) must be confirmed against live docs before a first paid run.
 - **Known ops gotchas:** a second preview server on port 8091 wedges video playback (check `lsof` first; serve faststart mp4s). A fal 403 "exhausted balance" right after a top-up is propagation lag, not a real failure.
+
+## Provider failover
+
+All creative and shot-direction calls use the local provider-failover adapter.
+The frontier order is Claude subscription models, ChatGPT/OpenAI subscription
+models through Codex CLI, Antigravity/Gemini subscription, Grok subscription,
+then API compatibility fallbacks. Quota, plan-limit,
+credential, timeout, unavailable-provider, and malformed-response failures
+advance automatically. Policy, privacy, input, authorization, and uncertain
+mid-edit failures stop. Multimodal review additionally uses configured
+image-capable OpenAI, Gemini, and Grok API adapters because local subscription
+CLIs cannot receive the generated frame bytes directly. The metered Anthropic
+API is deliberately not an automatic route.
 
 ## Commands
 

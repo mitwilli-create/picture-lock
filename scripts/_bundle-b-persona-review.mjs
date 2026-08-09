@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 import { execFileSync, spawnSync } from 'child_process';
+import { callMultimodalStructured } from '../lib/provider-failover.mjs';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const VIDEO = process.argv[2] ?? join(ROOT, 'output/bundles/bundle-b/spot-es.mp4');
@@ -17,31 +18,14 @@ const SCRATCH = join(ROOT, '.cache/bundle-b/persona-frames');
 mkdirSync(SCRATCH, { recursive: true });
 const run = (bin, args) => execFileSync(bin, args, { stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 64 * 1024 * 1024 });
 
-const API = 'https://api.anthropic.com/v1/messages';
-const MODEL = process.env.CREATIVE_MODEL ?? 'claude-opus-4-8';
-const IN_RATE = 15 / 1e6, OUT_RATE = 75 / 1e6;
 let spend = 0;
+const providersUsed = new Set();
 
-async function call({ system, content, schema, maxTokens = 6000, _retry = true }) {
-  const res = await fetch(API, {
-    method: 'POST',
-    headers: { 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-    body: JSON.stringify({
-      model: MODEL, max_tokens: maxTokens, thinking: { type: 'adaptive' }, system,
-      output_config: { format: { type: 'json_schema', schema } },
-      messages: [{ role: 'user', content }],
-    }),
-    signal: AbortSignal.timeout(300_000),
-  });
-  if (!res.ok) throw new Error(`persona review → ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const msg = await res.json();
-  const cost = (msg.usage?.input_tokens ?? 0) * IN_RATE + (msg.usage?.output_tokens ?? 0) * OUT_RATE;
-  spend += cost;
-  if (msg.stop_reason === 'max_tokens') {
-    if (!_retry) throw new Error('truncated twice');
-    return call({ system, content, schema, maxTokens: maxTokens * 2, _retry: false });
-  }
-  return JSON.parse(msg.content.find((b) => b.type === 'text')?.text ?? '{}');
+async function call({ system, content, schema, maxTokens = 6000 }) {
+  const result = await callMultimodalStructured({ system, content, schema, maxTokens });
+  spend += result.costUsd ?? 0;
+  providersUsed.add(result.provider);
+  return result.out;
 }
 
 // 8 frames, evenly sampled
@@ -113,7 +97,7 @@ const adjContent = [
 ];
 const adj = await call({ system: ADJ_SYSTEM, content: adjContent, schema: ADJ_SCHEMA, maxTokens: 8000 });
 
-let md = `# Persona review: ${basename(VIDEO)} (${new Date().toISOString().slice(0, 16)})\n\nReviewers: video post-production supervisor, brand design director, EU marketing strategist. Adjudicated by the master director carrying the ElevenLabs FDC hiring-manager persona (no real person represented). Model: ${MODEL}. Audio judged from measurements (${lufs}), not listening.\n\n`;
+let md = `# Persona review: ${basename(VIDEO)} (${new Date().toISOString().slice(0, 16)})\n\nReviewers: video post-production supervisor, brand design director, EU marketing strategist. Adjudicated by the master director carrying the ElevenLabs FDC hiring-manager persona (no real person represented). Providers: ${[...providersUsed].join(', ') || 'unknown'}. Audio judged from measurements (${lufs}), not listening.\n\n`;
 for (const [k, r] of results) {
   md += `## ${k} — ${r.score10}/10\n\n**Strengths:** ${r.strengths.join(' · ')}\n\n`;
   for (const i of r.issues) md += `- [${i.severity}]${i.at ? ` (${i.at})` : ''} ${i.issue}\n  Fix: ${i.fix}\n`;
@@ -123,7 +107,7 @@ md += `## Adjudication — ${adj.verdict.toUpperCase()}\n\n${adj.rationale}\n\n#
 for (const f of adj.prioritized_fixes) md += `${f.rank}. (${f.effort}${f.source_persona ? `, from ${f.source_persona}` : ''}) ${f.fix}\n`;
 md += `\n### ElevenLabs leverage (FDC hiring-manager hat)\n`;
 for (const l of adj.elevenlabs_leverage) md += `- **${l.product}**: ${l.move}${l.why_it_matters_for_fdc ? `\n  FDC angle: ${l.why_it_matters_for_fdc}` : ''}\n`;
-md += `\n### Hiring-manager take\n\n${adj.hiring_manager_take}\n\n---\nReview spend: $${spend.toFixed(2)} (Anthropic)\n`;
+md += `\n### Hiring-manager take\n\n${adj.hiring_manager_take}\n\n---\nReview spend: $${spend.toFixed(2)} (subscription/API adapter receipt)\n`;
 
 const outPath = join(OUT, 'persona-review.md');
 writeFileSync(outPath, md);

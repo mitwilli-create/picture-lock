@@ -58,7 +58,10 @@ The brief routes every shot to the right medium: **live** (text-to-video) for or
 
 The law grows through reflection: `node pipeline.mjs --reflect "your feedback"` converts producer notes into proposed rules appended to the file's Proposed section; a human promotes keepers to Ratified. A mistake caught once becomes a rule enforced on every future piece.
 
-On by default when `ANTHROPIC_API_KEY` is set; `--no-creative` falls back to a flat shot list, `--redirect` forces the council to re-run. Applies to both modes: cover mode gets the full brief; script mode gets its generated beats rewritten into one visual system.
+On by default when the subscription-first provider chain is enabled;
+`--no-creative` falls back to a flat shot list, and `--redirect` forces the
+council to re-run. Applies to both modes: cover mode gets the full brief;
+script mode gets its generated beats rewritten into one visual system.
 
 ## Why this shape
 

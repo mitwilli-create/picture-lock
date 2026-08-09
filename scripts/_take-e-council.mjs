@@ -1,5 +1,6 @@
-// Take E optimization council: 4 expert personas WATCH the actual cut (Gemini
-// 3.1 Pro, multimodal), then debate each other's points (Opus), then an FDC
+// Take E optimization council: 4 expert personas WATCH the actual cut through
+// the multimodal provider adapter, then debate each other's points through the
+// subscription-first text adapter, then an FDC
 // ElevenLabs hiring-manager adjudicator compiles the exhaustive change list and
 // rules whether the piece has hit its highest engagement likelihood.
 // End-state bar: Vox Media / Kurzgesagt flow, cohesion, polish.
@@ -7,6 +8,7 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { execFileSync } from 'child_process';
 import { homedir } from 'os';
+import { callMultimodalText, callText } from '../lib/provider-failover.mjs';
 
 const ROUND = process.argv[2] ?? '1';
 const VIDEO = process.argv[3] ?? 'output/takes/take-e.mp4';
@@ -14,10 +16,13 @@ const OUT = `output/takes/e/council-round-${ROUND}`;
 mkdirSync(OUT, { recursive: true });
 
 const CAREER_ENV = `${homedir()}/Documents/career-ops/.env`;
-const GEMINI = process.env.GEMINI_API_KEY
-  ?? (existsSync(CAREER_ENV) ? readFileSync(CAREER_ENV, 'utf8').match(/^GEMINI_API_KEY=(.+)$/m)?.[1]?.trim() : undefined);
-const ANTHROPIC = process.env.ANTHROPIC_API_KEY;
-if (!GEMINI || !ANTHROPIC) throw new Error('need GEMINI_API_KEY and ANTHROPIC_API_KEY');
+const careerEnv = existsSync(CAREER_ENV) ? readFileSync(CAREER_ENV, 'utf8') : '';
+for (const key of ['GEMINI_API_KEY', 'OPENAI_API_KEY', 'XAI_API_KEY']) {
+  if (!process.env[key]) {
+    const value = careerEnv.match(new RegExp(`^${key}=(.+)$`, 'm'))?.[1]?.trim();
+    if (value) process.env[key] = value;
+  }
+}
 
 // video proxy for the watchers
 const proxy = `${OUT}/proxy.mp4`;
@@ -35,29 +40,19 @@ const PERSONAS = [
 ];
 
 async function gemini(prompt) {
-  const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': GEMINI },
-    body: JSON.stringify({
-      contents: [{ parts: [{ inline_data: { mime_type: 'video/mp4', data: b64 } }, { text: CONTEXT + '\n\n' + prompt }] }],
-      generationConfig: { maxOutputTokens: 4000 },
-    }),
-    signal: AbortSignal.timeout(300_000),
+  const result = await callMultimodalText({
+    content: [
+      { type: 'video', source: { media_type: 'video/mp4', data: b64 } },
+      { type: 'text', text: CONTEXT + '\n\n' + prompt },
+    ],
+    preferredProvider: 'google-api',
+    maxTokens: 4000,
   });
-  if (!r.ok) throw new Error(`gemini → ${r.status}: ${(await r.text()).slice(0, 300)}`);
-  const j = await r.json();
-  return j.candidates?.[0]?.content?.parts?.map(p => p.text).join('') ?? '(empty)';
+  return result.text;
 }
 async function opus(system, user, maxTokens = 6000) {
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC, 'anthropic-version': '2023-06-01' },
-    body: JSON.stringify({ model: 'claude-opus-4-8', max_tokens: maxTokens, system, messages: [{ role: 'user', content: user }] }),
-    signal: AbortSignal.timeout(300_000),
-  });
-  if (!r.ok) throw new Error(`opus → ${r.status}: ${(await r.text()).slice(0, 300)}`);
-  const j = await r.json();
-  return j.content.map(c => c.text ?? '').join('');
+  const result = await callText({ system, content: user, maxTokens });
+  return result.text;
 }
 
 // 1. persona watches (parallel)
@@ -87,5 +82,5 @@ console.log('adjudication done →', `${OUT}/adjudication.md`);
 
 const notesPath = 'output/takes/spend-log.json';
 const log = existsSync(notesPath) ? JSON.parse(readFileSync(notesPath, 'utf8')) : [];
-log.push({ when: '2026-07-12', what: `take E optimization council round ${ROUND} (4 Gemini video reviews + Opus debate + Opus adjudication)`, est_cost_usd: 0.45 });
+log.push({ when: '2026-07-12', what: `take E optimization council round ${ROUND} (4 multimodal provider reviews + subscription-first debate + adjudication)`, est_cost_usd: 0 });
 writeFileSync(notesPath, JSON.stringify(log, null, 2) + '\n');

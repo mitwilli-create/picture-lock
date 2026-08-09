@@ -33,8 +33,9 @@ const COVER = arg('--cover', null);        // bring-your-own-piece: audio/video 
 const WANT_MUSIC = COVER ? !has('--no-music') : has('--music');
 const REFLECT_TEXT = arg('--reflect', null); // feedback → proposed Craft Law additions
 // The creative council (lib/creative.mjs) directs shots/pacing/sound and
-// vision-reviews every generated clip. On by default when the key is present.
-const CREATIVE = !has('--no-creative') && !!process.env.ANTHROPIC_API_KEY;
+// vision-reviews every generated clip. It uses the subscription-first
+// failover adapter whenever the local chain is enabled.
+const CREATIVE = !has('--no-creative') && process.env.CAREER_OPS_SUBSCRIPTION_CLI_ENABLED !== 'false';
 const MAX_RETAKES = parseInt(arg('--max-retakes', '1'), 10);
 const REDIRECT = has('--redirect');        // force the council to re-run (ignore cached brief)
 const ONLY = arg('--stage', null);        // run a single stage
@@ -571,7 +572,7 @@ async function reviewAndRetake(beats) {
 
 // ── cover mode: bring your own piece, get it covered ─────────────────────────
 // piece (audio/video) → ElevenLabs STT (word timestamps) → sentence-boundary
-// beat segments → Claude Haiku shot list → the same visuals stage → visuals cut
+// beat segments → subscription-first shot list → the same visuals stage → visuals cut
 // to the piece's exact timing, original audio untouched, word-timed captions.
 async function runCover(piecePath) {
   const cover = await import('./lib/cover.mjs');

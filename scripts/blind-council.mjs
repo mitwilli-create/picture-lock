@@ -1,10 +1,11 @@
-// Blind council review: N zero-context expert watchers (Gemini video) + text-model
-// blind reads (Opus, GPT-5.5) on a frame contact sheet + transcript. Extension of
+// Blind council review: N zero-context expert watchers through the multimodal
+// provider adapter, plus text-model blind reads on a frame contact sheet + transcript. Extension of
 // blind-review.mjs. Usage: node scripts/blind-council.mjs <video> <srt> <outdir>
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
 import { execFileSync } from 'child_process';
 import { join, basename } from 'path';
 import { homedir } from 'os';
+import { callMultimodalText } from '../lib/provider-failover.mjs';
 
 const VIDEO = process.argv[2];
 const SRT = process.argv[3];
@@ -15,12 +16,12 @@ const env = p => existsSync(p) ? readFileSync(p, 'utf8') : '';
 const CAREER = env(join(homedir(), 'Documents', 'career-ops', '.env'));
 const LOCAL = env('.env');
 const get = (src, k) => src.match(new RegExp(`^${k}=([^#\\n]+)`, 'm'))?.[1]?.trim();
-const GEMINI_KEY = get(CAREER, 'GEMINI_API_KEY');
-const OPENAI_KEY = get(CAREER, 'OPENAI_API_KEY');
-const ANTHROPIC_KEY = get(LOCAL, 'ANTHROPIC_API_KEY') ?? get(CAREER, 'ANTHROPIC_API_KEY');
-const OPUS = get(CAREER, 'ANTHROPIC_MODEL_OPUS') ?? 'claude-opus-4-7';
-const GPT = get(CAREER, 'OPENAI_MODEL_PRO') ?? 'gpt-5.5-pro';
-if (!GEMINI_KEY || !OPENAI_KEY || !ANTHROPIC_KEY) throw new Error('missing keys');
+for (const key of ['GEMINI_API_KEY', 'OPENAI_API_KEY', 'XAI_API_KEY']) {
+  if (!process.env[key]) {
+    const value = get(LOCAL, key) ?? get(CAREER, key);
+    if (value) process.env[key] = value;
+  }
+}
 
 // ---------- assets ----------
 const dur = parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', VIDEO], { encoding: 'utf8' }));
@@ -79,65 +80,42 @@ async function retry(name, fn, tries = 3) {
   }
 }
 async function gemini(lens, prompt) {
-  const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent', {
-    method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': GEMINI_KEY },
-    signal: AbortSignal.timeout(600_000),
-    body: JSON.stringify({ contents: [{ parts: [{ inline_data: { mime_type: 'video/mp4', data: vb64 } }, { text: prompt }] }] }),
+  return callMultimodalText({
+    content: [
+      { type: 'video', source: { media_type: 'video/mp4', data: vb64 } },
+      { type: 'text', text: prompt },
+    ],
+    preferredProvider: 'google-api',
+    maxTokens: 6000,
   });
-  if (!r.ok) throw new Error(`gemini ${r.status}: ${(await r.text()).slice(0, 300)}`);
-  const j = await r.json();
-  const t = j.candidates?.[0]?.content?.parts?.map(p => p.text ?? '').join('');
-  if (!t) throw new Error('gemini empty: ' + JSON.stringify(j).slice(0, 300));
-  return t;
 }
-async function opus() {
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01' },
-    signal: AbortSignal.timeout(600_000),
-    body: JSON.stringify({
-      model: OPUS, max_tokens: 16000,
-      messages: [{ role: 'user', content: [
-        ...sheets.map(d => ({ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: d } })),
-        { type: 'text', text: TEXT_PROMPT.replace('{LEGEND}', legend) + transcript },
-      ] }],
-    }),
+async function textPanel(preferredProvider) {
+  return callMultimodalText({
+    content: [
+      ...sheets.map(data => ({ type: 'image', source: { media_type: 'image/jpeg', data } })),
+      { type: 'text', text: TEXT_PROMPT.replace('{LEGEND}', legend) + transcript },
+    ],
+    preferredProvider,
+    maxTokens: 16000,
   });
-  if (!r.ok) throw new Error(`opus ${r.status}: ${(await r.text()).slice(0, 300)}`);
-  const j = await r.json();
-  const t = j.content?.filter(b => b.type === 'text').map(b => b.text).join('');
-  if (!t) throw new Error('opus empty');
-  return t;
-}
-async function gpt() {
-  const r = await fetch('https://api.openai.com/v1/responses', {
-    method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${OPENAI_KEY}` },
-    signal: AbortSignal.timeout(600_000),
-    body: JSON.stringify({
-      model: GPT,
-      input: [{ role: 'user', content: [
-        ...sheets.map(d => ({ type: 'input_image', image_url: `data:image/jpeg;base64,${d}` })),
-        { type: 'input_text', text: TEXT_PROMPT.replace('{LEGEND}', legend) + transcript },
-      ] }],
-    }),
-  });
-  if (!r.ok) throw new Error(`gpt ${r.status}: ${(await r.text()).slice(0, 300)}`);
-  const j = await r.json();
-  const t = j.output_text ?? j.output?.flatMap(o => o.content ?? []).filter(c => c.type === 'output_text').map(c => c.text).join('');
-  if (!t) throw new Error('gpt empty: ' + JSON.stringify(j).slice(0, 300));
-  return t;
 }
 
 // ---------- run all in parallel ----------
 const jobs = [
   ...Object.entries(LENSES).map(([k, p]) => [`gemini-${k}`, () => gemini(k, p)]),
-  [`text-opus`, opus],
-  [`text-gpt5`, gpt],
+  [`text-panel-claude-first`, () => textPanel('anthropic-api')],
+  [`text-panel-openai-first`, () => textPanel('openai-api')],
 ];
 const results = await Promise.allSettled(jobs.map(async ([name, fn]) => {
-  const text = await retry(name, fn);
-  writeFileSync(join(OUT, `${name}.md`), `# Blind review: ${name} on ${basename(VIDEO)}\n\n${text}\n`);
+  const result = await retry(name, fn);
+  const text = typeof result === 'string' ? result : result.text;
+  const provenance = typeof result === 'string' ? {} : {
+    provider: result.provider,
+    attempts: result.attempts,
+  };
+  writeFileSync(join(OUT, `${name}.md`), `# Blind review: ${name} on ${basename(VIDEO)}\n\n${Object.entries(provenance).map(([k, v]) => `- ${k}: ${v}`).join('\\n')}\n\n${text}\n`);
   console.log(`✓ ${name} done (${text.length}b)`);
-  return { name, text };
+  return { name, text, ...provenance };
 }));
 const ok = results.filter(r => r.status === 'fulfilled').map(r => r.value);
 const bad = results.filter(r => r.status === 'rejected').map((r, i) => `${jobs[results.indexOf(r)][0]}: ${r.reason}`);
