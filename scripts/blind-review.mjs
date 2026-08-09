@@ -22,7 +22,7 @@ execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', VIDEO, '-vf', 'scale=-2:480',
 const b64 = readFileSync(proxy).toString('base64');
 console.log(`proxy ${(b64.length / 1e6 * 0.75).toFixed(1)}MB → gemini-3.1-pro-preview`);
 
-const PROMPT = `You are a veteran re-recording mixer and sound designer reviewing a 28-second vertical short film with narration. You have no other context and no stake in the piece. Review ONLY the soundtrack, harshly and honestly, as if for a paying client deciding whether to ship it.
+const PROMPT = `You are a veteran re-recording mixer and sound designer reviewing a 50-second vertical short film with narration. You have no other context and no stake in the piece. Review ONLY the soundtrack, harshly and honestly, as if for a paying client deciding whether to ship it.
 
 Score each 0-10 with one-line justification:
 1. MIX HIERARCHY: does the narration sit clearly on top, with music and natural sound supporting rather than competing?

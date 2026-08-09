@@ -1,134 +1,45 @@
 {
-  "started": "2026-07-08T21:24:43.834Z",
+  "started": "2026-07-13T05:13:31.204Z",
   "script": "input/script.md",
   "dry": false,
   "calls": [
     {
       "stage": "cover",
-      "piece": "sample-piece-el.mp3",
-      "duration_s": 28.79,
-      "hash": "11aaf39ecfed",
+      "piece": "input/bundle-a-vo-master.mp3",
+      "duration_s": 49.44,
+      "hash": "82fc02f59300",
       "costUsd": 0
     },
     {
       "stage": "stt",
-      "cached": true,
-      "words": 175,
-      "costUsd": 0
+      "words": 233,
+      "lang": "eng",
+      "costUsd": 0.005493333333333334
     },
     {
       "stage": "council",
-      "cached": true,
-      "beats": 14,
-      "originalCostUsd": 3.5742,
-      "costUsd": 0
+      "model": "claude-opus-4-8",
+      "specialists": 7,
+      "beats": 22,
+      "costSource": "estimate",
+      "costUsd": 4.9349
     },
     {
       "stage": "visuals",
-      "beat": 0,
+      "beat": 14,
       "mode": "gen",
       "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 3,
-      "mode": "gen",
-      "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 4,
-      "mode": "gen",
-      "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 6,
-      "mode": "gen",
-      "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 7,
-      "mode": "gen",
-      "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 9,
-      "mode": "gen",
-      "medium": "animated",
-      "cached": true,
-      "originalCostUsd": 0.48,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 11,
-      "mode": "gen",
-      "medium": "live",
-      "cached": true,
-      "originalCostUsd": 0.4,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 12,
-      "mode": "gen",
-      "medium": "animated",
-      "cached": true,
-      "originalCostUsd": 0.48,
-      "costSource": "cache",
-      "costUsd": 0
-    },
-    {
-      "stage": "visuals",
-      "beat": 10,
-      "mode": "gen",
-      "medium": "live",
-      "requestId": "019f439e-7011-7970-b002-016ea17d8590",
+      "requestId": "019f59ec-c0e6-79e2-9be2-04c6ef9ec135",
       "requestedSeconds": 4,
       "costSource": "estimate",
       "costUsd": 0.4
     },
     {
       "stage": "visuals",
-      "beat": 1,
+      "beat": 20,
       "mode": "gen",
       "medium": "live",
-      "requestId": "019f439e-7011-7d82-8c1c-f89f0ad31445",
-      "requestedSeconds": 4,
-      "costSource": "estimate",
-      "costUsd": 0.4
-    },
-    {
-      "stage": "visuals",
-      "beat": 13,
-      "mode": "gen",
-      "medium": "live",
-      "requestId": "019f439e-7010-7680-9f24-e039a209f546",
+      "requestId": "019f59ec-c0fd-7f81-97b9-b0fd39a0e70b",
       "requestedSeconds": 4,
       "costSource": "estimate",
       "costUsd": 0.4
@@ -138,7 +49,97 @@
       "beat": 8,
       "mode": "gen",
       "medium": "live",
-      "requestId": "019f439e-7012-7303-8cdd-8277f685cbe4",
+      "requestId": "019f59ec-c0f2-7a40-8476-762a301fd1dd",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 15,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0f4-7090-ae23-bb7ed1fe2e64",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 0,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0ec-7a21-b5e4-03c1d6bf347c",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 12,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0f4-73f0-906b-b6e9dc003929",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 13,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0ec-7513-8b01-e6ee1b887ac2",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 18,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0fe-71d3-b28e-cac377b29e12",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 16,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0f6-7451-b5f9-7b36fe915156",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 17,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0f2-7ed0-802f-d2d2635fa1cd",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 7,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0f2-7de3-8bf1-13ec1aac5599",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 6,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0e6-7dc0-ab85-5afcde248c0b",
       "requestedSeconds": 4,
       "costSource": "estimate",
       "costUsd": 0.4
@@ -148,18 +149,106 @@
       "beat": 2,
       "mode": "gen",
       "medium": "live",
-      "requestId": "019f439e-7012-7303-8cdd-8269dcafe5b1",
+      "requestId": "019f59ec-c0f4-7bc3-a2ed-0c9627cce146",
       "requestedSeconds": 4,
       "costSource": "estimate",
       "costUsd": 0.4
     },
     {
       "stage": "visuals",
-      "beat": 5,
+      "beat": 11,
       "mode": "gen",
       "medium": "live",
-      "requestId": "019f439e-7011-7fe1-bec5-06cd41f94a74",
+      "requestId": "019f59ec-c0e3-79b3-a2f2-5e281ae912bb",
       "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 10,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0f6-7171-bf89-7e108170fed6",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 3,
+      "mode": "gen",
+      "medium": "animated",
+      "requestId": "019f59ec-f480-7b12-ad85-cf917b67b226",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.48
+    },
+    {
+      "stage": "visuals",
+      "beat": 5,
+      "mode": "gen",
+      "medium": "animated",
+      "requestId": "019f59ec-f4d0-7520-a6d4-d07426351871",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.48
+    },
+    {
+      "stage": "visuals",
+      "beat": 4,
+      "mode": "gen",
+      "medium": "animated",
+      "requestId": "019f59ec-f5e8-7423-aa4a-a51217723c57",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.48
+    },
+    {
+      "stage": "visuals",
+      "beat": 19,
+      "mode": "gen",
+      "medium": "live",
+      "requestId": "019f59ec-c0f3-7ce0-b71b-32a03ce21814",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.4
+    },
+    {
+      "stage": "visuals",
+      "beat": 9,
+      "mode": "gen",
+      "medium": "animated",
+      "requestId": "019f59ec-f501-7373-b2c9-f52094ae389a",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.48
+    },
+    {
+      "stage": "visuals",
+      "beat": 1,
+      "mode": "gen",
+      "medium": "animated",
+      "requestId": "019f59ec-f612-7c33-a6eb-f0884502a829",
+      "requestedSeconds": 4,
+      "costSource": "estimate",
+      "costUsd": 0.48
+    },
+    {
+      "stage": "review",
+      "beat": 0,
+      "verdict": "reroll",
+      "take": 0,
+      "reasons": "The match-to-flame ignition and whip-rack to the woman's face is strong: real subject literalism (a struck mat",
+      "costUsd": 0.094
+    },
+    {
+      "stage": "visuals",
+      "beat": 0,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 1,
+      "requestId": "019f59f0-6fd2-7a70-a342-9708ed78fa71",
       "costSource": "estimate",
       "costUsd": 0.4
     },
@@ -167,354 +256,605 @@
       "stage": "review",
       "beat": 0,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "review",
-      "beat": 1,
-      "verdict": "reroll",
-      "take": 0,
-      "reasons": "Motion is present (clean lateral dolly right, window and perspective shift across frames) and the mood is on-s",
-      "costUsd": 0.0704
-    },
-    {
-      "stage": "visuals",
-      "beat": 1,
-      "mode": "gen",
-      "medium": "live",
-      "retake": 1,
-      "requestId": "019f43a0-b03b-7ab3-b259-cb381552f217",
-      "costSource": "estimate",
-      "costUsd": 0.4
-    },
-    {
-      "stage": "review",
-      "beat": 1,
-      "verdict": "reroll",
       "take": 1,
-      "reasons": "Hard fail: a hanging sign in the upper-right carries garbled gibberish text ('8UD3', 'PIESSO') across all five",
-      "costUsd": 0.0577
-    },
-    {
-      "stage": "visuals",
-      "beat": 1,
-      "mode": "gen",
-      "medium": "live",
-      "retake": 2,
-      "requestId": "019f43a2-8c62-74c3-b316-98d3843d9404",
-      "costSource": "estimate",
-      "costUsd": 0.4
+      "reasons": "Strong continuous motion across the five frames: flame catches and grows, then a clean whip-rack up to the wom",
+      "costUsd": 0.0659
     },
     {
       "stage": "review",
       "beat": 1,
       "verdict": "accept",
-      "take": 2,
-      "reasons": "On-system: pre-dawn steel-blue exterior warming to sodium-amber practical light spilling from the single open ",
-      "costUsd": 0.0477
+      "take": 0,
+      "reasons": "Text-bearing prop routed correctly to animated medium; all lettering ('MARIA'S KITCHEN — EST. 1993', 'HOME-STY",
+      "costUsd": 0.0658
+    },
+    {
+      "stage": "review",
+      "beat": 2,
+      "verdict": "reroll",
+      "take": 0,
+      "reasons": "LITERALISM FAIL (Rule 2): the VO names 'pans' (plural) but the frame shows a single ambiguous round tin — read",
+      "costUsd": 0.0766
+    },
+    {
+      "stage": "visuals",
+      "beat": 2,
+      "mode": "gen",
+      "medium": "live",
+      "retake": 1,
+      "requestId": "019f59f2-67aa-7e31-bc10-603dce650fba",
+      "costSource": "estimate",
+      "costUsd": 0.4
     },
     {
       "stage": "review",
       "beat": 2,
       "verdict": "accept",
-      "take": 0,
-      "reasons": "VO 'already three hours into their day' aligns with a fishmonger already deep in labor over the crushed-ice cr",
-      "costUsd": 0.0437
+      "take": 1,
+      "reasons": "Literalism holds: the VO names 'pans, a folding table' and the frame literally shows dented aluminium pans wit",
+      "costUsd": 0.0668
     },
     {
       "stage": "review",
       "beat": 3,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "Literalism is strong and clever: the hero card is fully legible in aged blue ink reading 'Salsa de la casa — (",
+      "costUsd": 0.0733
+    },
+    {
+      "stage": "review",
+      "beat": 4,
+      "verdict": "reroll",
+      "take": 0,
+      "switchMedium": "animated",
+      "reasons": "Text-bearing animated prop fails Rule 3 / TEXT-BEARING PROPS. While the hero line 'Salsa de la casa — (no se e",
+      "costUsd": 0.0876
+    },
+    {
+      "stage": "visuals",
+      "beat": 4,
+      "mode": "gen",
+      "medium": "animated",
+      "retake": 1,
+      "requestId": "019f59f4-b045-7222-b57d-7704663e4de3",
+      "costSource": "estimate",
+      "costUsd": 0.48
     },
     {
       "stage": "review",
       "beat": 4,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 1,
+      "reasons": "Text-bearing prop renders fully legible, coherent cursive Spanish across all five frames — header, ingredient ",
+      "costUsd": 0.0727
     },
     {
       "stage": "review",
       "beat": 5,
       "verdict": "reroll",
       "take": 0,
-      "reasons": "Strong spectator-intercut energy, clear upward tilt and rising-hands motion, on-system warm morning light, goo",
-      "costUsd": 0.058
+      "switchMedium": "animated",
+      "reasons": "The animated crane-up introduces spurious duplicate text: a second 'Ana 2009'/'2009' label materializes at the",
+      "costUsd": 0.0806
     },
     {
       "stage": "visuals",
       "beat": 5,
       "mode": "gen",
-      "medium": "live",
+      "medium": "animated",
       "retake": 1,
-      "requestId": "019f43a4-a511-7c81-8d92-9ec2b260accd",
+      "requestId": "019f59f7-0ff2-7462-b018-3581d3457d1b",
       "costSource": "estimate",
-      "costUsd": 0.4
+      "costUsd": 0.48
     },
     {
       "stage": "review",
       "beat": 5,
-      "verdict": "accept",
+      "verdict": "reroll",
       "take": 1,
-      "reasons": "Literalism holds: the VO names 'their cameras' and the frame is dominated by a crowd of hands raising phones a",
-      "costUsd": 0.044
+      "switchMedium": "animated",
+      "reasons": "Text integrity failure: the still/animation renders DUPLICATE 'Ana 2009' labels. Frames 2-5 clearly show two s",
+      "costUsd": 0.0833
     },
     {
       "stage": "review",
       "beat": 6,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "Literalism is dead-on: VO says 'walk on this floor' and the frames show bare feet/legs walking across the worn",
+      "costUsd": 0.0748
     },
     {
       "stage": "review",
       "beat": 7,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "Literalism holds: VO names burning a first sauce and the frame IS a scorched sauce reducing and spitting in a ",
+      "costUsd": 0.0637
     },
     {
       "stage": "review",
       "beat": 8,
       "verdict": "accept",
       "take": 0,
-      "reasons": "Strong, clearly visible motion across all five frames: hands press and fold the brown butcher-paper package, t",
-      "costUsd": 0.0757
+      "reasons": "LITERALISM holds: the subject IS the older woman offering the spoon of dark sauce, matching the VO's warm, lau",
+      "costUsd": 0.0729
     },
     {
       "stage": "review",
       "beat": 9,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
-    },
-    {
-      "stage": "review",
-      "beat": 10,
-      "verdict": "reroll",
       "take": 0,
-      "reasons": "The action and literalism are excellent \u2014 a fishmonger in an orange Grundens bib genuinely hurling a whole sil",
-      "costUsd": 0.0708
-    },
-    {
-      "stage": "visuals",
-      "beat": 10,
-      "mode": "gen",
-      "medium": "live",
-      "retake": 1,
-      "requestId": "019f43a7-2297-7400-a3ea-7248c7fd31df",
-      "costSource": "estimate",
-      "costUsd": 0.4
+      "reasons": "Animated medium correctly chosen for text-bearing phone UI. Caller ID 'Landlord' with 'mobile' beneath is clea",
+      "costUsd": 0.0682
     },
     {
       "stage": "review",
       "beat": 10,
-      "verdict": "reroll",
-      "take": 1,
-      "reasons": "Two text violations. (1) The Grundens bib logo is front-and-center, in focus, and renders as garbled 'Gurugens",
-      "costUsd": 0.0601
-    },
-    {
-      "stage": "visuals",
-      "beat": 10,
-      "mode": "gen",
-      "medium": "live",
-      "retake": 2,
-      "requestId": "019f43a9-09f7-7f32-8eb4-fc42ce53f794",
-      "costSource": "estimate",
-      "costUsd": 0.4
-    },
-    {
-      "stage": "review",
-      "beat": 10,
-      "verdict": "reroll",
-      "take": 2,
-      "reasons": "HARD FAIL on the text-bearing-prop rule: despite the prompt explicitly demanding a plain bib with NO lettering",
-      "costUsd": 0.0696
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "The clip is on the locked visual system: tungsten amber key against steel-blue fill, low-key single-source pra",
+      "costUsd": 0.065
     },
     {
       "stage": "review",
       "beat": 11,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "Literalism holds: VO says 'we serve the last plate' and the shot literally shows a finished, steaming plate be",
+      "costUsd": 0.0662
     },
     {
       "stage": "review",
       "beat": 12,
       "verdict": "accept",
-      "cached": true,
-      "costUsd": 0
+      "take": 0,
+      "reasons": "Literalism holds: the subject IS the scratched stainless counter with knife marks and a burn ring exactly as t",
+      "costUsd": 0.0675
     },
     {
       "stage": "review",
       "beat": 13,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Literalism holds: gloved hands plating and passing a finished dish across a service line directly depicts 'a n",
+      "costUsd": 0.0616
+    },
+    {
+      "stage": "review",
+      "beat": 14,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Literalism satisfied: the VO 'every chip in every bowl' plays over a macro of chipped bowl rims and hairline c",
+      "costUsd": 0.0626
+    },
+    {
+      "stage": "review",
+      "beat": 15,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Tight 35mm handheld close-up of the woman's face on an emotional/defiant beat—literal to the VO ('So no, we ar",
+      "costUsd": 0.0639
+    },
+    {
+      "stage": "review",
+      "beat": 16,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Strong compliance with the brief and Craft Law. Motion is clearly visible and progressive across the five fram",
+      "costUsd": 0.0647
+    },
+    {
+      "stage": "review",
+      "beat": 17,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Strong literal match to VO: a fired line with every burner lit, pans on flame, cooks' hands moving — the subje",
+      "costUsd": 0.063
+    },
+    {
+      "stage": "review",
+      "beat": 18,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Literalism holds: VO 'when the last guest leaves' plays over a guest literally rising and walking out the door",
+      "costUsd": 0.0763
+    },
+    {
+      "stage": "review",
+      "beat": 19,
+      "verdict": "accept",
+      "take": 0,
+      "reasons": "Literal match to VO 'we turn off the lights': the fingertip settles on the toggle (frames 1-3) then flips it d",
+      "costUsd": 0.068
+    },
+    {
+      "stage": "review",
+      "beat": 20,
       "verdict": "reroll",
       "take": 0,
-      "reasons": "Multiple hard failures. (1) TEXT-BEARING PROP: the man's chest patch renders as garbled gibberish ('DGNEERS AT",
-      "costUsd": 0.055
+      "reasons": "Literalism and verb failures. The prompt calls for a thumb pressing a switch and a bank of KITCHEN lights DYIN",
+      "costUsd": 0.0789
     },
     {
       "stage": "visuals",
-      "beat": 13,
+      "beat": 20,
       "mode": "gen",
       "medium": "live",
       "retake": 1,
-      "requestId": "019f43ab-750e-79d3-ae1e-83568507a48e",
+      "requestId": "019f59fc-0a56-7a60-acb2-4d601d90e934",
       "costSource": "estimate",
       "costUsd": 0.4
     },
     {
       "stage": "review",
-      "beat": 13,
+      "beat": 20,
       "verdict": "reroll",
       "take": 1,
-      "reasons": "Hard fail on text-bearing prop: the orange bib carries a clearly rendered 'Grumgens' patch \u2014 a garbled version",
-      "costUsd": 0.0635
-    },
-    {
-      "stage": "visuals",
-      "beat": 13,
-      "mode": "gen",
-      "medium": "live",
-      "retake": 2,
-      "requestId": "019f43ad-4332-7543-b927-daa09f88f368",
-      "costSource": "estimate",
-      "costUsd": 0.4
-    },
-    {
-      "stage": "review",
-      "beat": 13,
-      "verdict": "reroll",
-      "take": 2,
-      "reasons": "Two hard failures. (1) TEXT-BEARING PROP / ARTIFACT: frames 3-5 clearly show a garbled embossed emblem/logo on",
-      "costUsd": 0.066
+      "reasons": "Frames 3-4 show a literal small flame/candle-like glow igniting on the switch toggle — a generation artifact t",
+      "costUsd": 0.0728
     },
     {
       "stage": "audio-qa",
       "file": "sfx beat 0",
-      "gapDb": 26.9,
+      "gapDb": 1.3,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 0",
+      "gapDb": 12.1,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "sfx",
       "beat": 0,
-      "prompt": "Soft low-passed wet slap of fish on ice on the first frame, ",
-      "duration_s": 1.11,
-      "costUsd": 0.00222
+      "prompt": "On the exact blue-flame contact frame: a soft low-frequency ",
+      "duration_s": 1,
+      "costUsd": 0.002
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 1",
+      "gapDb": 11.7,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 1,
+      "prompt": "voice+score only (graphic storefront insert, no on-camera ph",
+      "duration_s": 1.26,
+      "costUsd": 0.00252
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 2",
+      "gapDb": 17.8,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 2,
+      "prompt": "Soft metallic pan settle and a faint table-leg wood creak on",
+      "duration_s": 1.24,
+      "costUsd": 0.00248
     },
     {
       "stage": "audio-qa",
       "file": "sfx beat 3",
-      "gapDb": 10.9,
+      "gapDb": 11.8,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "sfx",
       "beat": 3,
-      "prompt": "Granular low-passed ice-crush pour on the cut, capped at -18",
+      "prompt": "Soft dry paper-card lift and cardboard box shuffle synced to",
+      "duration_s": 1.09,
+      "costUsd": 0.00218
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 4",
+      "gapDb": 16.5,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 4,
+      "prompt": "Tin lid soft closing tap and paper compress synced to the li",
+      "duration_s": 1.16,
+      "costUsd": 0.0023199999999999996
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 5",
+      "gapDb": 7.1,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 5",
+      "gapDb": 17.8,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 5,
+      "prompt": "voice+score only (graphic doorframe insert, no on-camera phy",
+      "duration_s": 1,
+      "costUsd": 0.002
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 6",
+      "gapDb": 34.7,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 6,
+      "prompt": "Faint bare footsteps and floor-tile scuff synced to the cree",
+      "duration_s": 1.01,
+      "costUsd": 0.0020199999999999997
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 7",
+      "gapDb": 8.2,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 7,
+      "prompt": "Aggressive sauce sizzle and spit plus low burner roar synced",
+      "duration_s": 1.29,
+      "costUsd": 0.0025800000000000003
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 8",
+      "gapDb": 30.8,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 8,
+      "prompt": "Soft spoon-against-bowl tap and a light exhale/laugh synced ",
+      "duration_s": 1.33,
+      "costUsd": 0.00266
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 9",
+      "gapDb": 52,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 9,
+      "prompt": "voice+score only (screen/UI insert per SCREEN-AND-STATIC rul",
+      "duration_s": 1.34,
+      "costUsd": 0.00268
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 10",
+      "gapDb": 24.4,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 10,
+      "prompt": "Quiet room-tone hood hum with a faint fabric shift as she lo",
+      "duration_s": 1,
+      "costUsd": 0.002
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 11",
+      "gapDb": 10.7,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 11,
+      "prompt": "Ceramic plate set-down and slide-scrape on the steel pass sy",
+      "duration_s": 1,
+      "costUsd": 0.002
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 12",
+      "gapDb": 0.4,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 12",
+      "gapDb": 11.1,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 12,
+      "prompt": "Soft metallic surface tone and a faint cloth wipe drag synce",
+      "duration_s": 1.19,
+      "costUsd": 0.0023799999999999997
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 13",
+      "gapDb": 6.7,
+      "verdict": "harsh: regenerating softer",
+      "costUsd": 0
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 13",
+      "gapDb": 9.9,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 13,
+      "prompt": "Warm layered service murmur, plate clinks and a distant orde",
+      "duration_s": 1,
+      "costUsd": 0.002
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 14",
+      "gapDb": 24.6,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 14,
+      "prompt": "Delicate ceramic bowl clink and stack settle synced to the s",
+      "duration_s": 1.26,
+      "costUsd": 0.00252
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 15",
+      "gapDb": 20.6,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 15,
+      "prompt": "Low room-tone hood hum with a sharp inhale synced to her chi",
+      "duration_s": 1.05,
+      "costUsd": 0.0021000000000000003
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 16",
+      "gapDb": 53.7,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 16,
+      "prompt": "Chain of gas whoomphs synced to each burner's ignition conta",
+      "duration_s": 1.82,
+      "costUsd": 0.00364
+    },
+    {
+      "stage": "audio-qa",
+      "file": "sfx beat 17",
+      "gapDb": 8.9,
+      "verdict": "clean",
+      "costUsd": 0
+    },
+    {
+      "stage": "sfx",
+      "beat": 17,
+      "prompt": "Full burner roar, pan slaps on grates and oil sizzle synced ",
       "duration_s": 1.32,
       "costUsd": 0.00264
     },
     {
       "stage": "audio-qa",
-      "file": "sfx beat 4",
-      "gapDb": 39.7,
+      "file": "sfx beat 18",
+      "gapDb": 32.5,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "sfx",
-      "beat": 4,
-      "prompt": "Single wet fish/crate thud on the cut, low-passed, ducked un",
-      "duration_s": 1,
-      "costUsd": 0.002
+      "beat": 18,
+      "prompt": "Chair scrape and soft door-latch synced to the guest's steps",
+      "duration_s": 1.2,
+      "costUsd": 0.0024
     },
     {
       "stage": "audio-qa",
-      "file": "sfx beat 5",
-      "gapDb": 18.8,
+      "file": "sfx beat 19",
+      "gapDb": 42.4,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "sfx",
-      "beat": 5,
-      "prompt": "One softened low-passed camera-shutter tick plus a low crowd",
-      "duration_s": 1,
-      "costUsd": 0.002
+      "beat": 19,
+      "prompt": "Faint room-tone hum and a soft fingertip-on-plastic contact ",
+      "duration_s": 1.02,
+      "costUsd": 0.00204
     },
     {
       "stage": "audio-qa",
-      "file": "sfx beat 10",
-      "gapDb": 51.9,
+      "file": "sfx beat 20",
+      "gapDb": 17.7,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "sfx",
-      "beat": 10,
-      "prompt": "Subtle low-passed air whoosh on the toss cut, under voice.",
+      "beat": 20,
+      "prompt": "A single soft switch-click synced to the exact thumb-press c",
       "duration_s": 1.06,
       "costUsd": 0.00212
     },
     {
       "stage": "audio-qa",
-      "file": "sfx beat 13",
-      "gapDb": 10.9,
-      "verdict": "clean",
-      "costUsd": 0
-    },
-    {
-      "stage": "sfx",
-      "beat": 13,
-      "prompt": "THE payoff accent: a wet, weighty low-passed slap synced to ",
-      "duration_s": 1,
-      "costUsd": 0.002
-    },
-    {
-      "stage": "audio-qa",
       "file": "ambience bed",
-      "gapDb": 24.1,
+      "gapDb": 18.6,
       "verdict": "clean",
       "costUsd": 0
     },
     {
       "stage": "ambience",
-      "prompt": "One continuous unbroken Pike Place Market ambience bed across all 28.8",
+      "prompt": "A continuous working-kitchen room-tone bed matched to an indoor tiled-",
       "duration_s": 28,
       "costUsd": 0.056
     },
     {
       "stage": "score",
-      "seconds": 31,
+      "seconds": 52,
       "model": "music_v2",
       "out": ".cache/cover/music.mp3",
       "briefed": true,
-      "costUsd": 0.07698186
+      "costUsd": 0.13
     },
     {
       "stage": "mix",
       "music": true,
       "ambience": true,
-      "sfx": 6,
+      "sfx": 21,
       "note": "three layers under the voice",
       "costUsd": 0
     },
     {
       "stage": "assemble",
-      "beats": 14,
+      "beats": 21,
       "out": "output/cover.mp4",
       "captions": "output/cover.srt (word-timed, soft)",
-      "duration_s": 28.58,
+      "duration_s": 48.8,
       "costUsd": 0
     }
   ],
-  "costUsd": 6.1281618600000005,
+  "costUsd": 17.992373333333333,
   "mode": "LIVE"
 }
