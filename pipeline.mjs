@@ -42,7 +42,11 @@ const DUB_LANG = arg('--dub', null);
 const DRY = has('--dry-run');
 const MOCK = has('--mock');                // end-to-end run with $0 spend (say + ffmpeg)
 const SKIP_GEN = has('--skip-gen');        // $0 visuals: mograph renders, gen beats fall back to cards
-const BUDGET = parseFloat(arg('--budget', '50'));
+const rawBudget = arg('--budget', '50');
+const parsedBudget = Number(rawBudget);
+if (typeof rawBudget !== 'string' || rawBudget.trim() === '' || !Number.isFinite(parsedBudget) || parsedBudget < 0)
+  throw new Error('--budget must be a finite, non-negative number');
+const BUDGET = parsedBudget;
 // --reroll-beat N (repeatable, 0-based to match beat-N filenames): bypass the
 // clip cache for those beats and keep the old take alongside.
 const REROLL = args.flatMap((a, i) => (a === '--reroll-beat' ? [parseInt(args[i + 1], 10)] : [])).filter(Number.isInteger);
