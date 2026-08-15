@@ -1,0 +1,87 @@
+diff --git a/package.json b/package.json
+index e099097..54b7398 100644
+--- a/package.json
++++ b/package.json
+@@ -10,7 +10,8 @@
+     "start": "node pipeline.mjs --script input/script.md",
+     "mock": "node pipeline.mjs --script input/script.md --mock",
+     "dry": "node pipeline.mjs --script input/script.md --dry-run",
+-    "voices": "node -e \"import('./lib/elevenlabs.mjs').then(m=>m.listVoices()).then(v=>console.log(v.voices.map(x=>x.name+' '+x.voice_id).join('\\n')))\""
++    "voices": "node -e \"import('./lib/elevenlabs.mjs').then(m=>m.listVoices()).then(v=>console.log(v.voices.map(x=>x.name+' '+x.voice_id).join('\\n')))\"",
++    "test": "node --test"
+   },
+   "engines": {
+     "node": ">=20"
+diff --git a/pipeline.mjs b/pipeline.mjs
+index fae9fcb..a5710b3 100644
+--- a/pipeline.mjs
++++ b/pipeline.mjs
+@@ -42,7 +42,11 @@ const DUB_LANG = arg('--dub', null);
+ const DRY = has('--dry-run');
+ const MOCK = has('--mock');                // end-to-end run with $0 spend (say + ffmpeg)
+ const SKIP_GEN = has('--skip-gen');        // $0 visuals: mograph renders, gen beats fall back to cards
+-const BUDGET = parseFloat(arg('--budget', '50'));
++const rawBudget = arg('--budget', '50');
++const parsedBudget = Number(rawBudget);
++if (typeof rawBudget !== 'string' || rawBudget.trim() === '' || !Number.isFinite(parsedBudget) || parsedBudget < 0)
++  throw new Error('--budget must be a finite, non-negative number');
++const BUDGET = parsedBudget;
+ // --reroll-beat N (repeatable, 0-based to match beat-N filenames): bypass the
+ // clip cache for those beats and keep the old take alongside.
+ const REROLL = args.flatMap((a, i) => (a === '--reroll-beat' ? [parseInt(args[i + 1], 10)] : [])).filter(Number.isInteger);
+diff --git a/test/cli-budget.test.mjs b/test/cli-budget.test.mjs
+new file mode 100644
+index 0000000..b89be17
+--- /dev/null
++++ b/test/cli-budget.test.mjs
+@@ -0,0 +1,50 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { spawnSync } from 'node:child_process';
++import { fileURLToPath } from 'node:url';
++
++const pipelinePath = fileURLToPath(new URL('../pipeline.mjs', import.meta.url));
++
++function runWithBudget(value) {
++  return spawnSync(process.execPath, [
++    pipelinePath,
++    '--budget',
++    value,
++    '--stage',
++    'definitely-invalid',
++  ], { encoding: 'utf8' });
++}
++
++test('rejects malformed budget values before unknown-stage validation', () => {
++  for (const value of ['nonsense', 'Infinity', '-1', '', '1abc']) {
++    const result = runWithBudget(value);
++    const output = `${result.stdout}\n${result.stderr}`;
++
++    assert.notEqual(result.status, 0, `expected --budget ${JSON.stringify(value)} to fail`);
++    assert.match(output, /--budget.*finite, non-negative number/);
++    assert.doesNotMatch(output, /unknown stage/);
++  }
++});
++
++test('rejects a bare budget flag before unknown-stage validation', () => {
++  const result = spawnSync(process.execPath, [
++    pipelinePath,
++    '--budget',
++    '--stage',
++    'definitely-invalid',
++  ], { encoding: 'utf8' });
++  const output = `${result.stdout}\n${result.stderr}`;
++
++  assert.notEqual(result.status, 0);
++  assert.match(output, /--budget.*finite, non-negative number/);
++  assert.doesNotMatch(output, /unknown stage/);
++});
++
++test('allows a zero budget to reach unknown-stage validation', () => {
++  const result = runWithBudget('0');
++  const output = `${result.stdout}\n${result.stderr}`;
++
++  assert.notEqual(result.status, 0);
++  assert.match(output, /--stage definitely-invalid: unknown stage/);
++  assert.doesNotMatch(output, /--budget.*finite, non-negative number/);
++});

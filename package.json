@@ -10,8 +10,7 @@
     "start": "node pipeline.mjs --script input/script.md",
     "mock": "node pipeline.mjs --script input/script.md --mock",
     "dry": "node pipeline.mjs --script input/script.md --dry-run",
-    "voices": "node -e \"import('./lib/elevenlabs.mjs').then(m=>m.listVoices()).then(v=>console.log(v.voices.map(x=>x.name+' '+x.voice_id).join('\\n')))\"",
-    "test": "node --test"
+    "voices": "node -e \"import('./lib/elevenlabs.mjs').then(m=>m.listVoices()).then(v=>console.log(v.voices.map(x=>x.name+' '+x.voice_id).join('\\n')))\""
   },
   "engines": {
     "node": ">=20"
