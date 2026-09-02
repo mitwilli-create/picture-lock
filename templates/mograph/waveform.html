@@ -26,7 +26,16 @@ function drawWave(peaks, cy, h, prog, color, alpha, label, labelAlpha){
     x.fillRect(bx, cy-bh/2, Math.max(1.4,(w/n)*0.7), bh);
   }
   if(prog>0&&prog<1){ x.fillStyle=ACC; x.fillRect(x0+prog*w, cy-h/2-8, 3, h+16); }
-  if(label){ x.globalAlpha=alpha*labelAlpha; x.fillStyle=DIM; x.font='500 26px "SF Mono", Menlo, monospace'; x.fillText(label, x0, cy-h/2-18); }
+  if(label){
+    x.globalAlpha=alpha*labelAlpha;
+    x.font='700 26px "SF Mono", Menlo, monospace';
+    const ty = cy-h/2-18;
+    const tw = x.measureText(label).width;
+    x.fillStyle='#0c1016';
+    x.fillRect(x0 - 8, ty - 26, tw + 16, 36);
+    x.fillStyle=TEXT;
+    x.fillText(label, x0, ty);
+  }
   x.globalAlpha=1;
 }
 
